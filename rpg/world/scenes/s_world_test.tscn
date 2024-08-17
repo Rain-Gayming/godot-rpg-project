@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://6mueamn1pyfo"]
+
+[ext_resource type="Terrain3DStorage" uid="uid://cchyqeoiituxj" path="res://world/terrain/world_terrain_1_storage.res" id="1_qgkwi"]
+[ext_resource type="Terrain3DMaterial" uid="uid://b645m01th2tp8" path="res://world/terrain/world_terrain_1_material.tres" id="2_8o1ff"]
+[ext_resource type="Terrain3DAssets" uid="uid://co5quv0bbm7pf" path="res://world/terrain/world_terrain_1_assets.tres" id="3_afb0i"]
+[ext_resource type="Texture2D" uid="uid://bshaychc0gyl7" path="res://world/Feluna 2.0.jpg" id="4_e5542"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7gno"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ac38k"]
+sky_material = SubResource("ProceduralSkyMaterial_r7gno")
+
+[sub_resource type="Environment" id="Environment_bhbdu"]
+background_mode = 2
+sky = SubResource("Sky_ac38k")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
+
+[node name="S_world_test" type="Node3D"]
+
+[node name="environment" type="Node3D" parent="."]
+
+[node name="Terrain3D" type="Terrain3D" parent="environment"]
+storage = ExtResource("1_qgkwi")
+material = ExtResource("2_8o1ff")
+assets = ExtResource("3_afb0i")
+
+[node name="sky" type="Node3D" parent="."]
+
+[node name="sun" type="DirectionalLight3D" parent="sky"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="world_environment" type="WorldEnvironment" parent="sky"]
+environment = SubResource("Environment_bhbdu")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.719291, 0, -0.694709, 0, 1, 0, 0.694709, 0, 0.719291, 2306, 1, 0.0137367)
+mesh = SubResource("CapsuleMesh_soc44")
+
+[node name="Camera3D" type="Camera3D" parent="CSGMesh3D"]
+transform = Transform3D(0.947785, 0, -0.31891, 0, 1, 0, 0.31891, 0, 0.947785, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2539.89, 0.01, -5386.67)
+visible = false
+texture = ExtResource("4_e5542")
