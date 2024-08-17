@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://6mueamn1pyfo"]
+[gd_scene load_steps=12 format=3 uid="uid://6mueamn1pyfo"]
 
+[ext_resource type="Script" path="res://player/player_camera.gd" id="1_noh4a"]
 [ext_resource type="Terrain3DStorage" uid="uid://cchyqeoiituxj" path="res://world/terrain/world_terrain_1_storage.res" id="1_qgkwi"]
+[ext_resource type="Script" path="res://player/player_movement.gd" id="2_1vprf"]
 [ext_resource type="Terrain3DMaterial" uid="uid://b645m01th2tp8" path="res://world/terrain/world_terrain_1_material.tres" id="2_8o1ff"]
 [ext_resource type="Terrain3DAssets" uid="uid://co5quv0bbm7pf" path="res://world/terrain/world_terrain_1_assets.tres" id="3_afb0i"]
 [ext_resource type="Texture2D" uid="uid://bshaychc0gyl7" path="res://world/Feluna 2.0.jpg" id="4_e5542"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0la4d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7gno"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,9 +24,35 @@ sky = SubResource("Sky_ac38k")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
-
 [node name="S_world_test" type="Node3D"]
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2306, 1, 0.0137367)
+
+[node name="player_mesh" type="CSGMesh3D" parent="player"]
+mesh = SubResource("CapsuleMesh_soc44")
+
+[node name="neck" type="Node3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.642275, 0)
+
+[node name="player_camera" type="Camera3D" parent="player/neck" node_paths=PackedStringArray("neck")]
+script = ExtResource("1_noh4a")
+neck = NodePath("..")
+
+[node name="player_scripts" type="Node3D" parent="player"]
+
+[node name="player_movement" type="Node3D" parent="player/player_scripts" node_paths=PackedStringArray("player_body", "neck", "camera")]
+script = ExtResource("2_1vprf")
+player_body = NodePath("../..")
+neck = NodePath("../../neck")
+camera = NodePath("../../neck/player_camera")
+walk_speed = 6.0
+run_speed = 9.0
+sprint_speed = 12.0
+jump_height = 4.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+shape = SubResource("CapsuleShape3D_0la4d")
 
 [node name="environment" type="Node3D" parent="."]
 
@@ -37,13 +69,6 @@ shadow_enabled = true
 
 [node name="world_environment" type="WorldEnvironment" parent="sky"]
 environment = SubResource("Environment_bhbdu")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.719291, 0, -0.694709, 0, 1, 0, 0.694709, 0, 0.719291, 2306, 1, 0.0137367)
-mesh = SubResource("CapsuleMesh_soc44")
-
-[node name="Camera3D" type="Camera3D" parent="CSGMesh3D"]
-transform = Transform3D(0.947785, 0, -0.31891, 0, 1, 0, 0.31891, 0, 0.947785, 0, 0, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2539.89, 0.01, -5386.67)
