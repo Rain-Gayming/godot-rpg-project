@@ -60,6 +60,7 @@ shape = SubResource("CapsuleShape3D_0la4d")
 storage = ExtResource("1_qgkwi")
 material = ExtResource("2_8o1ff")
 assets = ExtResource("3_afb0i")
+render_layers = 2147483650
 
 [node name="sky" type="Node3D" parent="."]
 
@@ -71,6 +72,5 @@ shadow_enabled = true
 environment = SubResource("Environment_bhbdu")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2539.89, 0.01, -5386.67)
-visible = false
+transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2539.89, 0, -5386.67)
 texture = ExtResource("4_e5542")
