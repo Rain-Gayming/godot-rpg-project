@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6mueamn1pyfo"]
+[gd_scene load_steps=14 format=3 uid="uid://6mueamn1pyfo"]
 
 [ext_resource type="Script" path="res://player/player_camera.gd" id="1_noh4a"]
 [ext_resource type="Terrain3DStorage" uid="uid://cchyqeoiituxj" path="res://world/terrain/world_terrain_1_storage.res" id="1_qgkwi"]
@@ -10,6 +10,11 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0la4d"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rfsw6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8go5d"]
+albedo_color = Color(0, 0.720236, 0.720236, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7gno"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -62,6 +67,11 @@ material = ExtResource("2_8o1ff")
 assets = ExtResource("3_afb0i")
 render_layers = 2147483650
 
+[node name="CSGMesh3D" type="CSGMesh3D" parent="environment/Terrain3D"]
+transform = Transform3D(150000, 0, 0, 0, 150000, 0, 0, 0, 150000, 0, -3.075, 0)
+mesh = SubResource("PlaneMesh_rfsw6")
+material = SubResource("StandardMaterial3D_8go5d")
+
 [node name="sky" type="Node3D" parent="."]
 
 [node name="sun" type="DirectionalLight3D" parent="sky"]
@@ -73,4 +83,5 @@ environment = SubResource("Environment_bhbdu")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2539.89, 0, -5386.67)
+visible = false
 texture = ExtResource("4_e5542")
