@@ -82,6 +82,6 @@ shadow_enabled = true
 environment = SubResource("Environment_bhbdu")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2504.85, 1, -5360.05)
+transform = Transform3D(-1.31134e-05, -300, -1.31134e-05, 0, -1.31134e-05, 300, -300, 1.31134e-05, 5.73206e-13, 2504.85, 0, -5360.05)
 visible = false
 texture = ExtResource("4_e5542")
