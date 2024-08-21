@@ -4,7 +4,6 @@ extends Node3D
 @export_group("references")
 @export var player_body : CharacterBody3D
 @export var neck : Node3D
-@export var camera : Node3D
 #endregion
 
 #region stamina
@@ -71,8 +70,8 @@ func move(delta: float) -> void:
 	
 	#moving
 	if direction:
-		if direction.z >= 0:
-			current_speed = run_speed
+		if input_dir.y >= 0:
+				set_move_type(GlobalEnums.movement_type.run)
 		
 		player_body.velocity.x = direction.x * current_speed * speed_multiplier
 		player_body.velocity.z = direction.z * current_speed * speed_multiplier

@@ -42,6 +42,13 @@ background_mode = 2
 sky = SubResource("Sky_ac38k")
 tonemap_mode = 2
 glow_enabled = true
+fog_light_color = Color(0.826836, 0.410418, 0.326493, 1)
+fog_light_energy = 0.85
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0376
+volumetric_fog_albedo = Color(0.988684, 0.371779, 0.159945, 1)
+volumetric_fog_length = 44.8
 
 [node name="S_world_test" type="Node3D"]
 
@@ -60,11 +67,10 @@ neck = NodePath("..")
 
 [node name="player_scripts" type="Node3D" parent="player"]
 
-[node name="player_movement" type="Node3D" parent="player/player_scripts" node_paths=PackedStringArray("player_body", "neck", "camera", "stamina")]
+[node name="player_movement" type="Node3D" parent="player/player_scripts" node_paths=PackedStringArray("player_body", "neck", "stamina")]
 script = ExtResource("2_1vprf")
 player_body = NodePath("../..")
 neck = NodePath("../../neck")
-camera = NodePath("../../neck/player_camera")
 stamina = NodePath("../stat_manager/stamina_manager")
 stamina_regen_rate = 3.0
 stamina_decrease_rate = 4.0
