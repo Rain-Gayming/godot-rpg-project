@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://6mueamn1pyfo"]
+[gd_scene load_steps=24 format=3 uid="uid://6mueamn1pyfo"]
 
 [ext_resource type="Script" path="res://player/player_camera.gd" id="1_noh4a"]
 [ext_resource type="Terrain3DStorage" uid="uid://cchyqeoiituxj" path="res://world/terrain/world_terrain_1_storage.res" id="1_qgkwi"]
@@ -30,6 +30,10 @@ bg_color = Color(0.350338, 0.712796, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8go5d"]
 albedo_color = Color(0, 0.720236, 0.720236, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_2lkvp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jhsx0"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7gno"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,7 +57,7 @@ volumetric_fog_length = 44.8
 [node name="S_world_test" type="Node3D"]
 
 [node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 3110.68, 12.4095, -1356.98)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 3072.12, 6.4095, -1352.52)
 
 [node name="player_mesh" type="CSGMesh3D" parent="player"]
 mesh = SubResource("CapsuleMesh_soc44")
@@ -149,6 +153,157 @@ render_layers = 2147483650
 transform = Transform3D(150000, 0, 0, 0, 150000, 0, 0, 0, 150000, 0, -3.075, 0)
 mesh = SubResource("PlaneMesh_rfsw6")
 material = SubResource("StandardMaterial3D_8go5d")
+
+[node name="village_nyxier" type="Node3D" parent="environment/Terrain3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3080.5, 3.5, -1370)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 10, -12.1394, 4.09828, 9)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -12.1394, 4.09828, 14)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D28" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, -60, 0, 1, -2.62268e-06, 0, 0, 0, 32.2667, -41.4485, -0.602927, 19.9854)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D29" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, -60, 0, 1, -2.62268e-06, 0, 0, 0, 32.2667, -41.4485, 8.39707, 19.9854)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -12.1394, 4.09828, 25)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 10, -12.1394, 4.09828, 30)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 10, -73.1394, 4.09828, 9)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D34" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -73.1394, 4.09828, 14)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D35" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -73.1394, 4.09828, 25)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D36" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 10, -73.1394, 4.09828, 30)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D37" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 10, -73.1394, 4.09828, 20)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -12.1394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -17.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -22.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -27.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -32.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D18" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -37.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D19" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -42.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -17.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D12" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -22.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D15" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -12.1394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D13" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -27.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D14" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -32.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D16" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -37.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D17" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -42.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D20" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -47.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D21" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -52.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D22" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -47.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D23" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -52.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D24" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -57.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D25" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -62.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D32" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -67.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D33" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -72.6394, 4.09828, 35)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D26" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -57.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D27" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -62.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
+
+[node name="CSGMesh3D30" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-4.37114e-08, 0, -10, 0, 10, 0, 1, 0, -4.37114e-07, -67.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_2lkvp")
+
+[node name="CSGMesh3D31" type="CSGMesh3D" parent="environment/Terrain3D/village_nyxier"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 10, 0, 2, 0, -8.74228e-08, -72.6394, 4.09828, 4)
+mesh = SubResource("BoxMesh_jhsx0")
 
 [node name="sky" type="Node3D" parent="."]
 

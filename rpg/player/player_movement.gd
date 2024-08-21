@@ -4,6 +4,7 @@ extends Node3D
 @export_group("references")
 @export var player_body : CharacterBody3D
 @export var neck : Node3D
+@export var is_paused : bool
 #endregion
 
 #region stamina
@@ -38,13 +39,18 @@ func _ready() -> void:
 	#sets the default speed
 	current_speed = run_speed
 	set_move_type(GlobalEnums.movement_type.run)
+	
+	SignalManager.pause_signal.connect(pause_player)
 
 func _physics_process(delta: float) -> void:
-	jump(delta)
-	move(delta)
-	set_move_type_input()
-	
-	player_body.move_and_slide()
+	if not is_paused:
+		jump(delta)
+		move(delta)
+		set_move_type_input()
+		player_body.move_and_slide()
+
+func pause_player():
+	is_paused = !is_paused
 #endregion
 
 #region funcs movement
