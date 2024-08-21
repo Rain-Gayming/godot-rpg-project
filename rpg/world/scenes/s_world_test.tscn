@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6mueamn1pyfo"]
+[gd_scene load_steps=16 format=3 uid="uid://6mueamn1pyfo"]
 
 [ext_resource type="Script" path="res://player/player_camera.gd" id="1_noh4a"]
 [ext_resource type="Terrain3DStorage" uid="uid://cchyqeoiituxj" path="res://world/terrain/world_terrain_1_storage.res" id="1_qgkwi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Terrain3DAssets" uid="uid://co5quv0bbm7pf" path="res://world/terrain/world_terrain_1_assets.tres" id="3_afb0i"]
 [ext_resource type="Script" path="res://general/scripts/float_change.gd" id="3_b6qf8"]
 [ext_resource type="Texture2D" uid="uid://bshaychc0gyl7" path="res://world/Feluna 2.0.jpg" id="4_e5542"]
+[ext_resource type="Script" path="res://general/scripts/health_manager.gd" id="4_r1cr0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
 
@@ -65,8 +66,9 @@ jump_height = 4.5
 [node name="stamina_manager" type="Node3D" parent="player/player_scripts/stat_manager"]
 script = ExtResource("3_b6qf8")
 
-[node name="health_manager" type="Node3D" parent="player/player_scripts/stat_manager"]
-script = ExtResource("3_b6qf8")
+[node name="health_manager" type="Node3D" parent="player/player_scripts/stat_manager" node_paths=PackedStringArray("health")]
+script = ExtResource("4_r1cr0")
+health = NodePath("health_float")
 
 [node name="health_float" type="Node3D" parent="player/player_scripts/stat_manager/health_manager"]
 script = ExtResource("3_b6qf8")

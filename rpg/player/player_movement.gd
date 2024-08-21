@@ -62,7 +62,7 @@ func jump(delta: float) -> void:
 
 func move(delta: float) -> void:
 	
-	if stamina_manager.currentValue <= stamina_manager.minValue:
+	if stamina_manager.current_value <= stamina_manager.min_value:
 		set_move_type(GlobalEnums.movement_type.run)
 	
 	#movement inputs
