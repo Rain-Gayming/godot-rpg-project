@@ -9,7 +9,7 @@ extends Node3D
 
 #region stamina
 @export_group("stamina")
-@export var stamina_manager : float_change
+@export var stamina : stamina_manager
 @export var stamina_regen_rate : float = 0.5
 @export var stamina_decrease_rate : float = 1
 #endregion
@@ -62,7 +62,7 @@ func jump(delta: float) -> void:
 
 func move(delta: float) -> void:
 	
-	if stamina_manager.current_value <= stamina_manager.min_value:
+	if stamina.stamina.current_value <= stamina.stamina.min_value:
 		set_move_type(GlobalEnums.movement_type.run)
 	
 	#movement inputs
@@ -71,19 +71,22 @@ func move(delta: float) -> void:
 	
 	#moving
 	if direction:
+		if direction.z >= 0:
+			current_speed = run_speed
+		
 		player_body.velocity.x = direction.x * current_speed * speed_multiplier
 		player_body.velocity.z = direction.z * current_speed * speed_multiplier
 		
 		#if the player is sprinting remove stamina
 		if current_move_type == GlobalEnums.movement_type.sprint:
-			stamina_manager.change_value(stamina_decrease_rate * delta, true)
+			stamina.change_value(stamina_decrease_rate * delta, true)
 	else:
 		#decelerates the player when they stop moving
 		player_body.velocity.x = move_toward(player_body.velocity.x, 0, current_speed)
 		player_body.velocity.z = move_toward(player_body.velocity.z, 0, current_speed)
 		
 		#when the player stops moving increase stamina
-		stamina_manager.change_value(stamina_regen_rate * delta, false)
+		stamina.change_value(stamina_regen_rate * delta, false)
 	
 #endregion
 
@@ -107,10 +110,10 @@ func set_move_type_input():
 
 func set_move_type(type : GlobalEnums.movement_type) -> void:
 	current_move_type = type
-	print(type)
+	#print(type)
 	
 	#sets the speed based off the current move type
-	if type == GlobalEnums.movement_type.walk:
+	if type == GlobalEnums.movement_type.walk: 
 		current_speed = walk_speed
 	elif type == GlobalEnums.movement_type.run:
 		current_speed = run_speed

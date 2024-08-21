@@ -1,17 +1,29 @@
-[gd_scene load_steps=16 format=3 uid="uid://6mueamn1pyfo"]
+[gd_scene load_steps=22 format=3 uid="uid://6mueamn1pyfo"]
 
 [ext_resource type="Script" path="res://player/player_camera.gd" id="1_noh4a"]
 [ext_resource type="Terrain3DStorage" uid="uid://cchyqeoiituxj" path="res://world/terrain/world_terrain_1_storage.res" id="1_qgkwi"]
 [ext_resource type="Script" path="res://player/player_movement.gd" id="2_1vprf"]
 [ext_resource type="Terrain3DMaterial" uid="uid://b645m01th2tp8" path="res://world/terrain/world_terrain_1_material.tres" id="2_8o1ff"]
+[ext_resource type="Script" path="res://general/scripts/stamina_manager.gd" id="3_8ha5y"]
 [ext_resource type="Terrain3DAssets" uid="uid://co5quv0bbm7pf" path="res://world/terrain/world_terrain_1_assets.tres" id="3_afb0i"]
 [ext_resource type="Script" path="res://general/scripts/float_change.gd" id="3_b6qf8"]
 [ext_resource type="Texture2D" uid="uid://bshaychc0gyl7" path="res://world/Feluna 2.0.jpg" id="4_e5542"]
 [ext_resource type="Script" path="res://general/scripts/health_manager.gd" id="4_r1cr0"]
+[ext_resource type="Script" path="res://ui/scripts/float_bar.gd" id="5_jxeim"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0la4d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k24nb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvg8w"]
+bg_color = Color(1, 0.289238, 0.317334, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5ji7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrncg"]
+bg_color = Color(0.350338, 0.712796, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rfsw6"]
 
@@ -48,12 +60,12 @@ neck = NodePath("..")
 
 [node name="player_scripts" type="Node3D" parent="player"]
 
-[node name="player_movement" type="Node3D" parent="player/player_scripts" node_paths=PackedStringArray("player_body", "neck", "camera", "stamina_manager")]
+[node name="player_movement" type="Node3D" parent="player/player_scripts" node_paths=PackedStringArray("player_body", "neck", "camera", "stamina")]
 script = ExtResource("2_1vprf")
 player_body = NodePath("../..")
 neck = NodePath("../../neck")
 camera = NodePath("../../neck/player_camera")
-stamina_manager = NodePath("../stat_manager/stamina_manager")
+stamina = NodePath("../stat_manager/stamina_manager")
 stamina_regen_rate = 3.0
 stamina_decrease_rate = 4.0
 walk_speed = 6.0
@@ -63,18 +75,61 @@ jump_height = 4.5
 
 [node name="stat_manager" type="Node3D" parent="player/player_scripts"]
 
-[node name="stamina_manager" type="Node3D" parent="player/player_scripts/stat_manager"]
-script = ExtResource("3_b6qf8")
+[node name="stamina_manager" type="Node3D" parent="player/player_scripts/stat_manager" node_paths=PackedStringArray("stamina", "bar")]
+script = ExtResource("3_8ha5y")
+stamina = NodePath("stamina_float")
+bar = NodePath("../../../ui_player/pb_stamina")
 
-[node name="health_manager" type="Node3D" parent="player/player_scripts/stat_manager" node_paths=PackedStringArray("health")]
+[node name="stamina_float" type="Node3D" parent="player/player_scripts/stat_manager/stamina_manager"]
+script = ExtResource("3_b6qf8")
+current_value = 100.0
+max_value = 100.0
+
+[node name="health_manager" type="Node3D" parent="player/player_scripts/stat_manager" node_paths=PackedStringArray("health", "bar")]
 script = ExtResource("4_r1cr0")
 health = NodePath("health_float")
+bar = NodePath("../../../ui_player/pb_health")
 
 [node name="health_float" type="Node3D" parent="player/player_scripts/stat_manager/health_manager"]
 script = ExtResource("3_b6qf8")
+current_value = 100.0
+max_value = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 shape = SubResource("CapsuleShape3D_0la4d")
+
+[node name="ui_player" type="Control" parent="player"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pb_health" type="ProgressBar" parent="player/ui_player"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 234.0
+offset_bottom = 32.0
+theme_override_styles/background = SubResource("StyleBoxTexture_k24nb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kvg8w")
+value = 100.0
+show_percentage = false
+script = ExtResource("5_jxeim")
+
+[node name="pb_stamina" type="ProgressBar" parent="player/ui_player"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 35.0
+offset_right = 234.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxTexture_p5ji7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nrncg")
+value = 100.0
+show_percentage = false
+script = ExtResource("5_jxeim")
 
 [node name="environment" type="Node3D" parent="."]
 

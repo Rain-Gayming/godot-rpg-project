@@ -1,11 +1,10 @@
+class_name stamina_manager
 extends Node
 
+@export var stamina : float_change
+@export var bar : float_bar
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func change_value(change : float, is_negative : bool):
+	stamina.change_value(change, is_negative)
+	
+	bar.update_bar(stamina.current_value)
