@@ -35,4 +35,3 @@ _shader_parameters = {
 "noise_texture": SubResource("NoiseTexture2D_pyrqf"),
 "vertex_normals_distance": 128.0
 }
-show_checkered = true
