@@ -1,15 +1,3 @@
-class_name health_manager
-extends Node
-
-@export var health : float_change
-@export var bar : float_bar
-
-func change_health(change : float, is_negative : bool):
-	health.change_value(change, is_negative)
-	
-	bar.update_bar(health.current_value)
-	if health.current_value <= 0:
-		die()
-
-func die():
-	print("entity has died")
+version https://git-lfs.github.com/spec/v1
+oid sha256:ee53f5bb67c05339a781c1617abbab2d47763e8f5a5d7af64b414e4c4734d79c
+size 319

@@ -1,10 +1,3 @@
-class_name stamina_manager
-extends Node
-
-@export var stamina : float_change
-@export var bar : float_bar
-
-func change_value(change : float, is_negative : bool):
-	stamina.change_value(change, is_negative)
-	
-	bar.update_bar(stamina.current_value)
+version https://git-lfs.github.com/spec/v1
+oid sha256:321bb0137eab9e27eb6ac5731573de89a4a832b683aff6147b0eab5d2607b11a
+size 244

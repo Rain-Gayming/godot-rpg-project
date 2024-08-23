@@ -1,14 +1,3 @@
-@tool
-extends Node3D
-
-signal transform_changed
-
-
-func _ready() -> void:
-	assert(Engine.is_editor_hint())
-	set_notify_transform(true)
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		transform_changed.emit()
+version https://git-lfs.github.com/spec/v1
+oid sha256:acef63dcc95168db82036f84ec976b4527e8df1e713fdb3be1c432eddddbb417
+size 245

@@ -1,9 +1,3 @@
-All ambientCG assets are provided under the
-Creative Commons CC0 1.0 Universal License.
-https://docs.ambientcg.com/license/
-
-Grass:
-https://ambientcg.com/view?id=Ground037
-
-Rock:
-https://ambientcg.com/view?id=Rock030
+version https://git-lfs.github.com/spec/v1
+oid sha256:7bd91e051b28e615dbdbc99f93f4e407066ad3c03a9082353b09b18cccf3aa60
+size 216
