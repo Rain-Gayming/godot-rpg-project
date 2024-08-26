@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_0e78j")
 attack_speed = 0.6
-weapon_scene = null
+weapon_scene = "res://inventory/resources/weapons/s_sword.tscn"
 item_name = "Long Sword"
 item_icon = ExtResource("1_hcpxs")
 can_stack = false

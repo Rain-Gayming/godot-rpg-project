@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f9a8651656985f67e985214a43caa99a7cd2203679596f684f2182495eb7772a
-size 447
+extends Node
+
+@export var item_in_slot : Inventory_Item
+
+@export_group("ui")
+@export var can_be_searched : bool = true 
+@export var item_icon : TextureRect
+@export var amount_text : Label
+
+func _ready() -> void:
+	pass
+	#update_slot()
+
+func update_slot():
+	item_icon.texture = item_in_slot.item.item_icon
+	
+	if item_in_slot.amount > 1:
+		amount_text.visible = true
+	else:
+		amount_text.visible = false
+	
+	amount_text.text = str(item_in_slot.amount)
