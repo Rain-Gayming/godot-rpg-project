@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:75c5cbd1cd1be5b4315dc0c8f818308475529c6f47111fef83a419548d2dcf2c
-size 98
+class_name WeaponItem
+extends Item
+
+@export_group("weapon info")
+@export var attack_speed : float
+@export_file("*.tscn") var weapon_scene

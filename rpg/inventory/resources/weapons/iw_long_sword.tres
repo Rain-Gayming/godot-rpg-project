@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2a468dc379844c15e552a3cc189e567cf05bad1def7fa1bf4b07592cd1fe7777
-size 488
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://bhk3uqyrglwra"]
+
+[ext_resource type="Script" path="res://inventory/scripts/item types/weapon_item.gd" id="1_0e78j"]
+[ext_resource type="Texture2D" uid="uid://cf6gs14p3vwnj" path="res://inventory/resources/weapons/t_long_sword.png" id="1_hcpxs"]
+
+[resource]
+script = ExtResource("1_0e78j")
+attack_speed = 0.6
+weapon_scene = null
+item_name = "Long Sword"
+item_icon = ExtResource("1_hcpxs")
+can_stack = false
+item_type = 0
