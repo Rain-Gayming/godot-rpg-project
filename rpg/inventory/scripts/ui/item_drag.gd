@@ -39,6 +39,21 @@ func swap_to_container(container : ItemContainer):
 		icon.visible = false
 		
 
+func use_item(to_use_on : ContainerEntityArea):
+	if slot_selected != null:
+		#use the item
+		slot_selected.item_in_slot.item.use(to_use_on.entity, to_use_on.parent_container)
+		
+		#reset values
+		slot_selected = null
+		icon.visible = false
+		#to_use_on.
+	else:
+		
+		#reset values
+		slot_selected = null
+		icon.visible = false
+
 func new_item(item_to_rip : Inventory_Item):
 	var new_item = Inventory_Item.new()
 	new_item.item = item_to_rip.item
