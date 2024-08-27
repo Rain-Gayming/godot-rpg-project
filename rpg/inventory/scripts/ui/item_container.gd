@@ -21,6 +21,7 @@ func add_item(item_to_add : Inventory_Item):
 		add_existing_item(item_to_add)
 	else:
 		add_new_item(item_to_add)
+	
 
 func add_new_item(item_to_add : Inventory_Item):
 	
@@ -30,6 +31,8 @@ func add_new_item(item_to_add : Inventory_Item):
 	item_location.add_child(new_slot)
 	#set its item
 	new_slot.item_in_slot = item_to_add
+	#set the parent container
+	new_slot.parent_container = self
 	#update its display
 	new_slot.update_slot()
 	
@@ -37,6 +40,9 @@ func add_new_item(item_to_add : Inventory_Item):
 	items.append(item_to_add)
 	item_res.append(item_to_add.item)
 	existing_slots.append(new_slot)
+	
+	print("adding item" + item_to_add.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_add.amount))
+	
  
 func add_existing_item(item_to_add : Inventory_Item):
 	var items_location = items.find(item_to_add)
@@ -44,4 +50,18 @@ func add_existing_item(item_to_add : Inventory_Item):
 	items[items_location].amount += item_to_add.amount
 	existing_slots[items_location].item_in_slot = items[items_location]
 	existing_slots[items_location].update_slot()
+
+func remove_item(item_to_remove : Inventory_Item):
+	var items_location = items.find(item_to_remove)
+		
+	print("removing item" + item_to_remove.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_remove.amount))
 	
+	items[items_location].amount -= item_to_remove.amount
+	if items[items_location].amount > 0:
+		existing_slots[items_location].item_in_slot = items[items_location]
+		existing_slots[items_location].update_slot()
+	else:
+		existing_slots[items_location].queue_free()
+		existing_slots.remove_at(items_location)
+		item_res.remove_at(items_location)
+		items.remove_at(items_location)
