@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:124bf6bb7005dacbd2d6eed18d9928072499e84dcceefd90844276cf10f4f649
-size 154
+extends Node
+
+enum movement_type{
+	walk,
+	run,
+	sprint,
+	crouch
+}
+
+enum item_type{
+	weapons,
+	armour,
+	clothes,
+	food,
+	potions,
+	books,
+	usable,
+	misc
+}
+
+enum equip_type{
+	weapon,
+	shield,
+	helmet,
+	chestplate,
+	left_shoulder,
+	right_shoulder,
+	left_glove,
+	right_glove,
+	legs,
+	boots
+}

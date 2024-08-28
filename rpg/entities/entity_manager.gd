@@ -2,7 +2,6 @@ class_name EntityManager
 extends Node
 
 @export var equipment_manager : EquipmentManager
-
 @export var inventory_ui : InventoryUI
 
 func _ready() -> void:

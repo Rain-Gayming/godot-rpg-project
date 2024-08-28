@@ -9,6 +9,7 @@ extends Resource
 
 @export_group("usage info")
 @export var can_be_used : bool
+@export var is_equipable : bool
 @export var destroy_on_use : bool
 
 func use(entity : EntityManager, container : ItemContainer):

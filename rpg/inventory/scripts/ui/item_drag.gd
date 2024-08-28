@@ -39,12 +39,14 @@ func swap_to_container(container : ItemContainer):
 		icon.visible = false
 		
 
-func use_item(to_use_on : ContainerEntityArea):
+func use_item(to_use_on : ContainerEntityArea, slot_type : GlobalEnums.equip_type, is_two_handed : bool):
 	if slot_selected != null:
-		#use the item
-		print(to_use_on.entity)
-		slot_selected.item_in_slot.item.use(to_use_on.entity, to_use_on.parent_container)
-		
+		if !slot_selected.item_in_slot.item.is_equipable:
+			#use the item 
+			print(to_use_on.entity)
+			slot_selected.item_in_slot.item.use(to_use_on.entity, to_use_on.parent_container)
+		else:
+			to_use_on.entity.equipment_manager.equip_item(slot_selected.item_in_slot, slot_type, is_two_handed)
 		#reset values
 		slot_selected = null
 		icon.visible = false
