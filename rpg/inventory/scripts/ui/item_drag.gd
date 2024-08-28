@@ -42,12 +42,12 @@ func swap_to_container(container : ItemContainer):
 func use_item(to_use_on : ContainerEntityArea):
 	if slot_selected != null:
 		#use the item
+		print(to_use_on.entity)
 		slot_selected.item_in_slot.item.use(to_use_on.entity, to_use_on.parent_container)
 		
 		#reset values
 		slot_selected = null
 		icon.visible = false
-		#to_use_on.
 	else:
 		
 		#reset values

@@ -1,12 +1,11 @@
 class_name EntityManager
 extends Node
 
+@export var equipment_manager : EquipmentManager
 
-# Called when the node enters the scene tree for the first time.
+@export var inventory_ui : InventoryUI
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	if inventory_ui.entity_area.entity == null:
+		inventory_ui.entity_area.entity = self
+		print("setting entity manager to " + str(self))

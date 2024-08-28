@@ -13,7 +13,7 @@ extends Resource
 
 func use(entity : EntityManager, container : ItemContainer):
 	if can_be_used:
-		if destroy_on_use:
+		if destroy_on_use: 
 			var remove_item = Inventory_Item.new()
 			remove_item.amount = 1
 			remove_item.item = self

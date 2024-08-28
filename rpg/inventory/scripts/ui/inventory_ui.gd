@@ -9,9 +9,6 @@ extends Node
 @export var entity : EntityManager
 @export var entity_area : ContainerEntityArea
 
-func _ready() -> void:
-	if entity != null:
-		entity_area.entity = entity
 
 func toggle_inventory():
 	menu.visible = !menu.visible
