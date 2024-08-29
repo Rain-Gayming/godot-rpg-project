@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SettingsSave" load_steps=2 format=3 uid="uid://bbgbfu4v0wqbu"]
+
+[ext_resource type="Script" path="res://general/scripts/settings_resource.gd" id="1_gwnjo"]
+
+[resource]
+script = ExtResource("1_gwnjo")
+resolution = 3
+window = 0
+fps_cap = 3
+anti_aliasing = 3
+texture_quality = 1
+master = 50.0
+music = 50.0
+voice = 50.0
+effects = 50.0

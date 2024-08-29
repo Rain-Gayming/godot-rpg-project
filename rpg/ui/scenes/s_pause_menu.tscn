@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://7bvfa33fqnrr"]
+
+[ext_resource type="Script" path="res://ui/scripts/pause_menu.gd" id="1_52ko3"]
+[ext_resource type="PackedScene" uid="uid://b5p81y8wdctr1" path="res://ui/scenes/s_settings_menu.tscn" id="1_sv4qw"]
+
+[node name="s_pause_menu" type="Control" node_paths=PackedStringArray("menu", "buttons", "options_menu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_52ko3")
+menu = NodePath("menu")
+buttons = NodePath("menu/vbox")
+options_menu = NodePath("menu/s_settings_menu")
+
+[node name="menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cr_background" type="ColorRect" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.192157, 0.192157, 0.329412)
+
+[node name="vbox" type="VBoxContainer" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -49.0
+offset_right = 45.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="b_resume" type="Button" parent="menu/vbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "   Resume   "
+
+[node name="b_options" type="Button" parent="menu/vbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Options"
+
+[node name="b_exit" type="Button" parent="menu/vbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Exit"
+
+[node name="s_settings_menu" parent="menu" instance=ExtResource("1_sv4qw")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="menu/vbox/b_options" to="." method="open_options"]

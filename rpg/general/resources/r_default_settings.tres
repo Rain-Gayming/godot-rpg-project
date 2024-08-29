@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SettingsSave" load_steps=2 format=3 uid="uid://ecgajwbkhf2y"]
+
+[ext_resource type="Script" path="res://general/scripts/settings_resource.gd" id="1_4cimv"]
+
+[resource]
+script = ExtResource("1_4cimv")
+resolution = 2
+window = 0
+fps_cap = 3
+anti_aliasing = 2
+texture_quality = 2
+master = -30.0
+music = -30.0
+voice = -30.0
+effects = -30.0

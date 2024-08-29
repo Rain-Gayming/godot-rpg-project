@@ -1,0 +1,429 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5p81y8wdctr1"]
+
+[ext_resource type="Script" path="res://ui/scripts/tabbar.gd" id="1_5fx6h"]
+[ext_resource type="Script" path="res://ui/scripts/options_menu.gd" id="1_c4enw"]
+[ext_resource type="Resource" uid="uid://bbgbfu4v0wqbu" path="res://general/resources/r_settings_save.tres" id="2_iigac"]
+[ext_resource type="Resource" uid="uid://c541iypew8ft0" path="res://texture swapper/r_texture_swapper.tres" id="3_miaam"]
+[ext_resource type="Resource" uid="uid://ecgajwbkhf2y" path="res://general/resources/r_default_settings.tres" id="3_s0sww"]
+
+[node name="s_settings_menu" type="Control" node_paths=PackedStringArray("resolution_dropdown", "window_dropdown", "fpscap_dropdown", "anti_aliasing_dropdown", "textures_dropdown", "master_slider", "master_label", "music_slider", "music_label", "voice_slider", "voice_label", "effects_slider", "effects_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c4enw")
+settings_save = ExtResource("2_iigac")
+default_save = ExtResource("3_s0sww")
+resolution_dropdown = NodePath("background/tabbar/tab_graphics/tabbar/graphics_display/ob_resolution")
+window_dropdown = NodePath("background/tabbar/tab_graphics/tabbar/graphics_display/ob_window")
+fpscap_dropdown = NodePath("background/tabbar/tab_graphics/tabbar/graphics_display/ob_fps")
+anti_aliasing_dropdown = NodePath("background/tabbar/tab_graphics/tabbar/graphics_quality/ob_anti-aliasing")
+textures_swapper = ExtResource("3_miaam")
+textures_dropdown = NodePath("background/tabbar/tab_graphics/tabbar/graphics_quality/ob_texture")
+master_slider = NodePath("background/tabbar/tab_audio/hs_master_volume")
+master_label = NodePath("background/tabbar/tab_audio/hs_master_volume/l_master_title")
+music_slider = NodePath("background/tabbar/tab_audio/hs_music_volume")
+music_label = NodePath("background/tabbar/tab_audio/hs_music_volume/l_music_title")
+voice_slider = NodePath("background/tabbar/tab_audio/hs_voice_volume")
+voice_label = NodePath("background/tabbar/tab_audio/hs_voice_volume/l_voice_title")
+effects_slider = NodePath("background/tabbar/tab_audio/hs_effects_volume")
+effects_label = NodePath("background/tabbar/tab_audio/hs_effects_volume/l_effects_title")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -220.0
+offset_right = 300.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[node name="tabbar" type="TabBar" parent="background" node_paths=PackedStringArray("tabs")]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 40.0
+current_tab = 0
+tab_alignment = 1
+tab_count = 4
+tab_0/title = "Graphics"
+tab_1/title = "Audio"
+tab_2/title = "Controls"
+tab_3/title = "Gameplay"
+script = ExtResource("1_5fx6h")
+tabs = [NodePath("tab_graphics"), NodePath("tab_audio"), NodePath("tab_controls"), NodePath("tab_gameplay")]
+
+[node name="tab_graphics" type="Control" parent="background/tabbar"]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="tabbar" type="TabBar" parent="background/tabbar/tab_graphics" node_paths=PackedStringArray("tabs")]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 600.0
+offset_bottom = 42.0
+current_tab = 0
+tab_alignment = 1
+tab_count = 4
+tab_0/title = "Display"
+tab_1/title = "Quality"
+tab_2/title = "Atmosphere"
+tab_3/title = "Lighting"
+script = ExtResource("1_5fx6h")
+tabs = [NodePath("graphics_display"), NodePath("graphics_quality"), NodePath("graphics_atmosphere"), NodePath("graphics_lighting")]
+
+[node name="graphics_display" type="Control" parent="background/tabbar/tab_graphics/tabbar"]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="ob_resolution" type="OptionButton" parent="background/tabbar/tab_graphics/tabbar/graphics_display"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 39.0
+offset_right = 295.0
+offset_bottom = 70.0
+selected = 2
+item_count = 5
+popup/item_0/text = "4k (4096x2160)"
+popup/item_1/text = "1440p (2560x1440)"
+popup/item_1/id = 1
+popup/item_2/text = "1080p (1920x1080)"
+popup/item_2/id = 2
+popup/item_3/text = "720p (1280, 720)"
+popup/item_3/id = 3
+popup/item_4/text = "540p (960x540)"
+popup/item_4/id = 4
+
+[node name="title" type="RichTextLabel" parent="background/tabbar/tab_graphics/tabbar/graphics_display/ob_resolution"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -40.5
+offset_right = 41.5
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resolution"
+
+[node name="ob_window" type="OptionButton" parent="background/tabbar/tab_graphics/tabbar/graphics_display"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 39.0
+offset_right = 486.0
+offset_bottom = 70.0
+selected = 2
+item_count = 3
+popup/item_0/text = "Window"
+popup/item_1/text = "Borderless Window"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="title" type="RichTextLabel" parent="background/tabbar/tab_graphics/tabbar/graphics_display/ob_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -40.5
+offset_right = 35.5
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Window"
+
+[node name="ob_fps" type="OptionButton" parent="background/tabbar/tab_graphics/tabbar/graphics_display"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 109.0
+offset_right = 369.0
+offset_bottom = 140.0
+selected = 2
+item_count = 5
+popup/item_0/text = "Uncapped"
+popup/item_0/id = 4
+popup/item_1/text = "144"
+popup/item_1/id = 1
+popup/item_2/text = "120"
+popup/item_2/id = 1
+popup/item_3/text = "60"
+popup/item_3/id = 2
+popup/item_4/text = "30"
+popup/item_4/id = 3
+
+[node name="title" type="RichTextLabel" parent="background/tabbar/tab_graphics/tabbar/graphics_display/ob_fps"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -40.5
+offset_right = 35.5
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "FPS Cap
+"
+
+[node name="graphics_quality" type="Control" parent="background/tabbar/tab_graphics/tabbar"]
+visible = false
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="ob_anti-aliasing" type="OptionButton" parent="background/tabbar/tab_graphics/tabbar/graphics_quality"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 39.0
+offset_right = 486.0
+offset_bottom = 70.0
+selected = 2
+item_count = 4
+popup/item_0/text = "off"
+popup/item_1/text = "MSAA 2x"
+popup/item_1/id = 1
+popup/item_2/text = "MSAA 4x"
+popup/item_2/id = 2
+popup/item_3/text = "MSAA 8x"
+popup/item_3/id = 3
+
+[node name="title" type="RichTextLabel" parent="background/tabbar/tab_graphics/tabbar/graphics_quality/ob_anti-aliasing"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -40.5
+offset_right = 48.0
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "anti-aliasing"
+
+[node name="ob_texture" type="OptionButton" parent="background/tabbar/tab_graphics/tabbar/graphics_quality"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 39.0
+offset_right = 294.0
+offset_bottom = 70.0
+selected = 2
+item_count = 4
+popup/item_0/text = "Low"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "High"
+popup/item_2/id = 2
+popup/item_3/text = "Highest"
+popup/item_3/id = 3
+
+[node name="title" type="RichTextLabel" parent="background/tabbar/tab_graphics/tabbar/graphics_quality/ob_texture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -40.5
+offset_right = 48.0
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Textures: "
+
+[node name="graphics_atmosphere" type="Control" parent="background/tabbar/tab_graphics/tabbar"]
+visible = false
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="graphics_lighting" type="Control" parent="background/tabbar/tab_graphics/tabbar"]
+visible = false
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="tab_audio" type="Control" parent="background/tabbar"]
+visible = false
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="hs_master_volume" type="HSlider" parent="background/tabbar/tab_audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -126.0
+offset_right = -14.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -80.0
+max_value = 20.0
+value = 3.0
+
+[node name="l_master_title" type="Label" parent="background/tabbar/tab_audio/hs_master_volume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -31.0
+offset_right = 85.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Master Volume (123):"
+
+[node name="hs_music_volume" type="HSlider" parent="background/tabbar/tab_audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -126.0
+offset_right = 201.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -80.0
+max_value = 20.0
+value = 3.0
+
+[node name="l_music_title" type="Label" parent="background/tabbar/tab_audio/hs_music_volume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -31.0
+offset_right = 85.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music Volume (123):"
+
+[node name="hs_voice_volume" type="HSlider" parent="background/tabbar/tab_audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -74.0
+offset_right = -14.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -80.0
+max_value = 20.0
+value = 3.0
+
+[node name="l_voice_title" type="Label" parent="background/tabbar/tab_audio/hs_voice_volume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -31.0
+offset_right = 85.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Voice Volume (123):"
+
+[node name="hs_effects_volume" type="HSlider" parent="background/tabbar/tab_audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -74.0
+offset_right = 201.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -80.0
+max_value = 20.0
+value = 3.0
+
+[node name="l_effects_title" type="Label" parent="background/tabbar/tab_audio/hs_effects_volume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -31.0
+offset_right = 85.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Effects Volume (123):"
+
+[node name="tab_controls" type="Control" parent="background/tabbar"]
+visible = false
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="tab_gameplay" type="Control" parent="background/tabbar"]
+visible = false
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[connection signal="tab_changed" from="background/tabbar" to="background/tabbar" method="swap_tab"]
+[connection signal="tab_changed" from="background/tabbar/tab_graphics/tabbar" to="background/tabbar/tab_graphics/tabbar" method="swap_tab"]
+[connection signal="item_selected" from="background/tabbar/tab_graphics/tabbar/graphics_display/ob_resolution" to="." method="set_resolution"]
+[connection signal="item_selected" from="background/tabbar/tab_graphics/tabbar/graphics_display/ob_window" to="." method="set_window"]
+[connection signal="item_selected" from="background/tabbar/tab_graphics/tabbar/graphics_display/ob_fps" to="." method="set_fps_cap"]
+[connection signal="item_selected" from="background/tabbar/tab_graphics/tabbar/graphics_quality/ob_anti-aliasing" to="." method="set_AA"]
+[connection signal="item_selected" from="background/tabbar/tab_graphics/tabbar/graphics_quality/ob_texture" to="." method="set_textures"]
+[connection signal="value_changed" from="background/tabbar/tab_audio/hs_master_volume" to="." method="set_master_audio"]
+[connection signal="value_changed" from="background/tabbar/tab_audio/hs_music_volume" to="." method="set_music_audio"]
+[connection signal="value_changed" from="background/tabbar/tab_audio/hs_voice_volume" to="." method="set_voice_audio"]
+[connection signal="value_changed" from="background/tabbar/tab_audio/hs_effects_volume" to="." method="set_effects_audio"]

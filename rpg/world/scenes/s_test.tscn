@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbig3yhd8yjkw"]
+
+[ext_resource type="Texture2D" uid="uid://c5pcp8mkiy0g5" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_edvie"]
+[ext_resource type="PackedScene" uid="uid://c18snl1mlvr8p" path="res://player/scenes/player.tscn" id="2_q6ylx"]
+[ext_resource type="PackedScene" uid="uid://bmuf0mm0gu1dq" path="res://inventory/scenes/s_ground_item.tscn" id="3_osb0t"]
+[ext_resource type="Resource" uid="uid://bhk3uqyrglwra" path="res://inventory/resources/weapons/iw_long_sword.tres" id="4_23lqn"]
+[ext_resource type="Script" path="res://inventory/scripts/item types/inventory_item.gd" id="5_o3kl2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwuby"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_351ej"]
+sky_material = SubResource("ProceduralSkyMaterial_bwuby")
+
+[sub_resource type="Environment" id="Environment_4hmij"]
+background_mode = 2
+sky = SubResource("Sky_351ej")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3ib44"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2acho"]
+albedo_texture = ExtResource("1_edvie")
+uv1_scale = Vector3(15, 15, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ujyp"]
+
+[sub_resource type="Resource" id="Resource_hr8d5"]
+script = ExtResource("5_o3kl2")
+item = ExtResource("4_23lqn")
+amount = 1
+
+[node name="s_test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4hmij")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1500, 0, 0, 0, 1500, 0, 0, 0, 1500, 0, 0, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_3ib44")
+material = SubResource("StandardMaterial3D_2acho")
+
+[node name="player" parent="." instance=ExtResource("2_q6ylx")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2.41, 0)
+floor_max_angle = 1.5708
+
+[node name="stairs" type="CSGMesh3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 2.52662, 5.4, -0.615, -16.9)
+use_collision = true
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 0.5, 1.1, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps2" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 1, 1.64, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps3" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 1.7, 2.33, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps4" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 2.2, 3.01, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps5" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 2.9, 3.69, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps6" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 3.3, 4.32, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="steps7" type="CSGMesh3D" parent="stairs"]
+transform = Transform3D(2, 0, 0, 0, 0.8, 0, 0, 0, 4, 3.9, 4.95, 0)
+mesh = SubResource("BoxMesh_3ujyp")
+
+[node name="ground_item" parent="." instance=ExtResource("3_osb0t")]
+transform = Transform3D(2.5, 0, 0, 0, 1.125, 0, 0, 0, 2.5, -5.75, 0.8125, -4.75)
+item = SubResource("Resource_hr8d5")
