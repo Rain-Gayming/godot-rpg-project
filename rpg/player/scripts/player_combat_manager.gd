@@ -1,3 +1,4 @@
+class_name CombatManager
 extends Node
 
 @export_group("references")
