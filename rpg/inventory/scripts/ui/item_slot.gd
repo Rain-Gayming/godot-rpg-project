@@ -4,6 +4,7 @@ extends Node
 @export var item_in_slot : Inventory_Item
 @export var is_hovered : bool
 @export var parent_container : ItemContainer
+@export var is_equipment_slot : bool
 
 @export_group("ui")
 @export var can_be_searched : bool = true 
@@ -33,6 +34,7 @@ func update_slot():
 			amount_text.visible = false
 		
 		amount_text.text = str(item_in_slot.amount)
+		print(item_in_slot.amount)
 	else:
 		amount_text.visible = false
 		item_icon.texture = null

@@ -25,8 +25,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 375.0
+offset_right = -517.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_a7ge5")
 left_weapon_slot = NodePath("cr_background/p_player/slot_weapon")
 container = NodePath("cr_background/p_items")
@@ -36,10 +41,8 @@ entity_area = NodePath("cr_background/p_player")
 
 [node name="cr_background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 374.0
-offset_right = 678.0
-offset_bottom = 662.0
+offset_right = 646.0
+offset_bottom = 288.0
 scale = Vector2(0.85, 0.85)
 color = Color(0.212305, 0.212305, 0.212305, 1)
 
@@ -52,74 +55,94 @@ offset_bottom = 275.0
 script = ExtResource("2_eiijb")
 parent_container = NodePath("../p_items")
 
-[node name="slot_head" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_head" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_left_shoulder" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_left_shoulder" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_left = 11.5294
 offset_top = 68.1765
 offset_right = 41.5294
 offset_bottom = 98.1765
 slot_type = 4
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_right_shoulder" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_right_shoulder" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_left = 93.8824
 offset_top = 68.1765
 offset_right = 123.882
 offset_bottom = 98.1765
 slot_type = 5
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_left_glove" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_left_glove" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_left = 11.5294
 offset_top = 105.824
 offset_right = 41.5294
 offset_bottom = 135.824
 slot_type = 6
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_right_glove" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_right_glove" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_left = 93.8824
 offset_top = 105.824
 offset_right = 123.882
 offset_bottom = 135.824
 slot_type = 7
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_sheild" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_sheild" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_left = 11.5294
 offset_top = 139.941
 offset_right = 41.5294
 offset_bottom = 169.941
 slot_type = 1
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_weapon" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_weapon" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_left = 93.8824
 offset_top = 139.941
 offset_right = 123.882
 offset_bottom = 169.941
 slot_type = 0
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_chest" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_chest" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_top = 84.6471
 offset_bottom = 124.647
 slot_type = 3
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_legs" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_legs" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_top = 129.353
 offset_bottom = 169.353
 slot_type = 8
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
-[node name="slot_boots" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity") instance=ExtResource("3_a78jj")]
+[node name="slot_boots" parent="cr_background/p_player" node_paths=PackedStringArray("parent_entity", "parent_container") instance=ExtResource("3_a78jj")]
 offset_top = 172.882
 offset_bottom = 212.882
 slot_type = 9
 parent_entity = NodePath("..")
+parent_container = NodePath("../../p_items")
+is_equipment_slot = true
 
 [node name="p_items" type="Panel" parent="cr_background" node_paths=PackedStringArray("item_location", "inventory_ui")]
 layout_mode = 0

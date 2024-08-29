@@ -21,11 +21,18 @@ amount = 1
 
 [node name="s_container" type="Control" node_paths=PackedStringArray("container", "filter", "menu", "entity_area")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = 178.0
+offset_right = -274.0
+offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ebcuc")
 container = NodePath("cr_background/p_items")
 filter = NodePath("cr_background/p_filter/te_filter")
@@ -33,11 +40,19 @@ menu = NodePath("cr_background")
 entity_area = NodePath("cr_background/p_entity")
 
 [node name="cr_background" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 374.0
-offset_right = 678.0
-offset_bottom = 662.0
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.5
+offset_top = -121.5
+offset_right = 360.5
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.85, 0.85)
 color = Color(0.212305, 0.212305, 0.212305, 1)
 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbig3yhd8yjkw"]
+[gd_scene load_steps=15 format=3 uid="uid://cbig3yhd8yjkw"]
 
 [ext_resource type="Texture2D" uid="uid://c5pcp8mkiy0g5" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_edvie"]
+[ext_resource type="Material" uid="uid://cliuor1tvkhvd" path="res://texture swapper/test.tres" id="1_igx5f"]
 [ext_resource type="PackedScene" uid="uid://c18snl1mlvr8p" path="res://player/scenes/player.tscn" id="2_q6ylx"]
 [ext_resource type="PackedScene" uid="uid://bmuf0mm0gu1dq" path="res://inventory/scenes/s_ground_item.tscn" id="3_osb0t"]
 [ext_resource type="Resource" uid="uid://bhk3uqyrglwra" path="res://inventory/resources/weapons/iw_long_sword.tres" id="4_23lqn"]
 [ext_resource type="Script" path="res://inventory/scripts/item types/inventory_item.gd" id="5_o3kl2"]
+[ext_resource type="PackedScene" uid="uid://dj457wgxvqtax" path="res://entities/scenes/s_dummy.tscn" id="6_d7wj2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwuby"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,7 +32,7 @@ uv1_scale = Vector3(15, 15, 15)
 [sub_resource type="Resource" id="Resource_hr8d5"]
 script = ExtResource("5_o3kl2")
 item = ExtResource("4_23lqn")
-amount = 1
+amount = 56
 
 [node name="s_test" type="Node3D"]
 
@@ -43,6 +45,7 @@ environment = SubResource("Environment_4hmij")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1500, 0, 0, 0, 1500, 0, 0, 0, 1500, 0, 0, 0)
+material_override = ExtResource("1_igx5f")
 use_collision = true
 mesh = SubResource("PlaneMesh_3ib44")
 material = SubResource("StandardMaterial3D_2acho")
@@ -87,3 +90,6 @@ mesh = SubResource("BoxMesh_3ujyp")
 [node name="ground_item" parent="." instance=ExtResource("3_osb0t")]
 transform = Transform3D(2.5, 0, 0, 0, 1.125, 0, 0, 0, 2.5, -5.75, 0.8125, -4.75)
 item = SubResource("Resource_hr8d5")
+
+[node name="dummy" parent="." instance=ExtResource("6_d7wj2")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2, -18)

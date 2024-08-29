@@ -8,11 +8,17 @@ extends Node
 @export var container : ItemContainer
 @export var filter : TextEdit
 @export var menu : Control
+@export var is_container : bool
 
 @export_group("references for children")
 @export var entity : EntityManager
 @export var entity_area : ContainerEntityArea
 
+
+func _process(delta: float) -> void:
+	if is_container:
+		if Input.is_action_just_pressed("menu_debug_container"):
+			toggle_inventory_value(!menu.visible)
 
 func toggle_inventory():
 	menu.visible = !menu.visible

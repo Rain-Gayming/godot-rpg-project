@@ -19,7 +19,7 @@ func _ready() -> void:
 		SignalManager.add_item_to_player_signal.connect(add_item)
 
 func add_item(item_to_add : Inventory_Item):
-	print("adding item")
+	#print("adding item")
 	if item_res.has(item_to_add.item):
 		add_existing_item(item_to_add)
 	else:
@@ -28,36 +28,47 @@ func add_item(item_to_add : Inventory_Item):
 
 func add_new_item(item_to_add : Inventory_Item):
 	
+	var new_amount = item_to_add.amount
+	var new_item_ref = item_to_add.item
+	var new_item = Inventory_Item.new()
+	
+	print(new_amount)
+	
+	new_item.amount = new_amount
+	new_item.item = new_item_ref
+	
 	#spawn the new slot
 	var new_slot = item_slot.instantiate()
 	#attach it to the grid
 	item_location.add_child(new_slot)
 	#set its item
-	new_slot.item_in_slot = item_to_add
+	new_slot.item_in_slot = new_item
 	#set the parent container
 	new_slot.parent_container = self
 	#update its display
 	new_slot.update_slot()
 	
 	#add the items to their lists
-	items.append(item_to_add)
-	item_res.append(item_to_add.item)
+	items.append(new_item)
+	item_res.append(new_item.item)
 	existing_slots.append(new_slot)
 	
-	print("adding item" + item_to_add.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_add.amount))
+	#print("adding item" + item_to_add.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_add.amount))
 	
  
 func add_existing_item(item_to_add : Inventory_Item):
 	var items_location = items.find(item_to_add)
 	
-	items[items_location].amount += item_to_add.amount
+	var new_amount =  item_to_add.amount
+	
+	items[items_location].amount += new_amount
 	existing_slots[items_location].item_in_slot = items[items_location]
 	existing_slots[items_location].update_slot()
 
 func remove_item(item_to_remove : Inventory_Item):
 	var items_location = items.find(item_to_remove)
 		
-	print("removing item" + item_to_remove.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_remove.amount))
+	#print("removing item " + item_to_remove.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_remove.amount) + " on container " + str(self))
 	
 	items[items_location].amount -= item_to_remove.amount
 	if items[items_location].amount > 0:

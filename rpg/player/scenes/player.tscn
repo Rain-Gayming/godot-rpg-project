@@ -141,15 +141,18 @@ value = 100.0
 show_percentage = false
 script = ExtResource("8_8mjys")
 
-[node name="s_pause_menu" parent="." instance=ExtResource("10_imdtu")]
-
 [node name="s_inventory" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("9_s1raf")]
 entity = NodePath("../player_scripts/entity_manager")
 
-[node name="s_container" parent="." instance=ExtResource("12_pqc2r")]
-offset_left = 562.0
-offset_top = -5.0
-offset_right = 562.0
-offset_bottom = -5.0
+[node name="s_container" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("12_pqc2r")]
+offset_left = 300.0
+offset_top = 172.0
+offset_right = 300.0
+offset_bottom = 172.0
+is_container = true
+entity = NodePath("../player_scripts/entity_manager")
+
+[node name="s_pause_menu" parent="." instance=ExtResource("10_imdtu")]
+mouse_filter = 2
 
 [connection signal="area_entered" from="neck/player_camera/interaction_area" to="neck/player_camera/interaction_area" method="_on_area_entered"]

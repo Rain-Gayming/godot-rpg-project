@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://texture swapper/scripts/texture_container_resource.gd" id="1_bvnkm"]
 [ext_resource type="Material" uid="uid://cliuor1tvkhvd" path="res://texture swapper/test.tres" id="2_0hbml"]
-[ext_resource type="Texture2D" uid="uid://c263xaevmts41" path="res://texture swapper/tx_swap_test_1.png" id="3_ls7a0"]
-[ext_resource type="Texture2D" uid="uid://drv2rrm5sfmm2" path="res://texture swapper/tx_swap_test_2.png" id="4_1ih2n"]
-[ext_resource type="Texture2D" uid="uid://c8cd1a3313k1u" path="res://texture swapper/tx_swap_test_3.png" id="5_76tox"]
-[ext_resource type="Texture2D" uid="uid://ct3an6tgxuwsr" path="res://texture swapper/tx_swap_test_4.png" id="6_ku67t"]
+[ext_resource type="Texture2D" uid="uid://6o03roo0jsjs" path="res://addons/kenney_prototype_textures/purple/texture_01.png" id="3_kbn3c"]
+[ext_resource type="Texture2D" uid="uid://diov2wwbft0rk" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_jiwbc"]
+[ext_resource type="Texture2D" uid="uid://yomt2wq1be5x" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="5_1fe7b"]
+[ext_resource type="Texture2D" uid="uid://c5pcp8mkiy0g5" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="6_j7hlh"]
 [ext_resource type="Material" uid="uid://ciuttuiojxwok" path="res://world/textures/dark wood/m_dark_wood.tres" id="7_jpl27"]
 [ext_resource type="Script" path="res://texture swapper/scripts/texture_swap_resource.gd" id="7_wyglv"]
 [ext_resource type="Texture2D" uid="uid://bscgmb4sx4t6y" path="res://world/textures/dark wood/dark_wood_1.png" id="8_18lul"]
@@ -16,7 +16,7 @@
 [sub_resource type="Resource" id="Resource_34eqw"]
 script = ExtResource("1_bvnkm")
 material = ExtResource("2_0hbml")
-textures = Array[Texture2D]([ExtResource("3_ls7a0"), ExtResource("4_1ih2n"), ExtResource("5_76tox"), ExtResource("6_ku67t")])
+textures = Array[Texture2D]([ExtResource("3_kbn3c"), ExtResource("4_jiwbc"), ExtResource("5_1fe7b"), ExtResource("6_j7hlh")])
 
 [sub_resource type="Resource" id="Resource_a27yn"]
 script = ExtResource("1_bvnkm")

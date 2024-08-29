@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cliuor1tvkhvd"]
 
-[ext_resource type="Texture2D" uid="uid://drv2rrm5sfmm2" path="res://texture swapper/tx_swap_test_2.png" id="1_d8ky3"]
+[ext_resource type="Texture2D" uid="uid://v05hxa7am5c0" path="res://addons/kenney_prototype_textures/orange/texture_10.png" id="1_uc0wr"]
 
 [resource]
-albedo_texture = ExtResource("1_d8ky3")
+albedo_texture = ExtResource("1_uc0wr")
+uv1_scale = Vector3(150, 150, 150)

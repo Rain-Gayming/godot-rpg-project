@@ -19,19 +19,27 @@ extends Node
 @export var legs : Inventory_Item
 @export var boots : Inventory_Item
 
-func equip_item(item_to_equip : Inventory_Item, slot : GlobalEnums.equip_type, is_two_handed : bool):
+func equip_item(item_to_equip : Inventory_Item, slot : GlobalEnums.equip_type, is_two_handed : bool, container : ItemContainer):
 	var equipment_item = item_to_equip.item
 	
 	print("equipping " + equipment_item.item_name)
 	
 	if slot == equipment_item.equip_slot:
+		
+		var new_amount = item_to_equip.amount
+		var new_item_ref = item_to_equip.item
+		var new_item = Inventory_Item.new()
+		new_item.amount = new_amount
+		new_item.item = new_item_ref
+		
 		match equipment_item.equip_slot:
 			GlobalEnums.equip_type.weapon:
 				if is_two_handed:
 					#set two handed 
 					pass
 				else:
-					left_weapon = item_to_equip
+					left_weapon = new_item
+					
 					
 					#if a weapon exists it destroys it
 					if left_hand_equip != null:
@@ -49,6 +57,7 @@ func equip_item(item_to_equip : Inventory_Item, slot : GlobalEnums.equip_type, i
 					
 					#set the current weapon on the combat manager
 					combat_manager.current_weapon = weapon
+					combat_manager.current_weapon.stats = item_to_equip.item
 					
 					#set slots information
 					inventory_ui.left_weapon_slot.item_in_slot = item_to_equip
@@ -73,15 +82,30 @@ func equip_item(item_to_equip : Inventory_Item, slot : GlobalEnums.equip_type, i
 				boots = item_to_equip
 		
 		#remove the item from the inventory
-		inventory_ui.container.remove_item(item_to_equip)
+		if container == null:
+			inventory_ui.container.remove_item(item_to_equip)
+		else:
+			container.remove_item(item_to_equip)
 	else:
 		print("slot does not match item")
 
-func unequip(slot : GlobalEnums.equip_type):
+func unequip(slot : GlobalEnums.equip_type, container : ItemContainer):
+	print("unequipping")
+	
 	match slot:
 		GlobalEnums.equip_type.weapon:
 			#if a weapon exists it destroys it
 			if left_hand_equip != null:
+				var new_amount = left_weapon.amount
+				var new_item_ref = left_weapon.item
+				var new_item = Inventory_Item.new()
+				
+				print(new_amount)
+				
+				new_item.amount = new_amount
+				new_item.item = new_item_ref
+				
+				container.add_item(new_item)
 				#delete the item
 				left_hand_equip.queue_free()
 				
