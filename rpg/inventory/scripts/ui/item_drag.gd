@@ -33,7 +33,13 @@ func swap_to_container(container : ItemContainer):
 			#adds it to the target container
 			container.add_item(new_item(slot_selected.item_in_slot))
 			#removes the item from the container
-			slot_selected.parent_container.remove_item(slot_selected.item_in_slot)
+			if slot_selected.parent_container != null:
+				slot_selected.parent_container.remove_item(slot_selected.item_in_slot)
+			else:
+				#this should only run if the slot is an equipment slot
+				#unequip item
+				container.inventory_ui.entity.equipment_manager.unequip(slot_selected.item_in_slot.item.equip_slot)
+				pass
 		
 		#reset values
 		slot_selected = null

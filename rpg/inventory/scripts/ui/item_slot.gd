@@ -24,14 +24,18 @@ func slot_clicked():
 	ItemDrag.pick_slot(self)
 
 func update_slot():
-	item_icon.texture = item_in_slot.item.item_icon
-	
-	if item_in_slot.amount > 1:
-		amount_text.visible = true
+	if item_in_slot != null:
+		item_icon.texture = item_in_slot.item.item_icon
+		
+		if item_in_slot.amount > 1:
+			amount_text.visible = true
+		else:
+			amount_text.visible = false
+		
+		amount_text.text = str(item_in_slot.amount)
 	else:
 		amount_text.visible = false
-	
-	amount_text.text = str(item_in_slot.amount)
+		item_icon.texture = null
 
 
 func _on_mouse_entered() -> void:

@@ -11,6 +11,7 @@ extends Node
 @export_group("ui")
 @export var item_location : GridContainer
 @export var item_slot : PackedScene
+@export var inventory_ui : InventoryUI
 @export var existing_slots : Array[Control]
 
 func _ready() -> void:
