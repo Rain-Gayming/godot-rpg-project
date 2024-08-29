@@ -29,10 +29,11 @@ func pick_slot(item_slot : ItemSlot):
 
 func swap_to_container(container : ItemContainer):
 	if slot_selected != null:
-		#adds it to the target container
-		container.add_item(new_item(slot_selected.item_in_slot))
-		#removes the item from the container
-		slot_selected.parent_container.remove_item(slot_selected.item_in_slot)
+		if slot_selected.parent_container != container:
+			#adds it to the target container
+			container.add_item(new_item(slot_selected.item_in_slot))
+			#removes the item from the container
+			slot_selected.parent_container.remove_item(slot_selected.item_in_slot)
 		
 		#reset values
 		slot_selected = null
@@ -52,6 +53,7 @@ func use_item(to_use_on : ContainerEntityArea, slot_type : GlobalEnums.equip_typ
 		icon.visible = false
 	else:
 		
+		to_use_on.entity.equipment_manager.equip_item(slot_selected.item_in_slot, slot_type, is_two_handed)
 		#reset values
 		slot_selected = null
 		icon.visible = false
