@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_0e78j")
 attack_speed = 0.6
+damage = 34
 weapon_scene = "res://inventory/resources/weapons/s_sword.tscn"
 is_two_handed = false
 equip_slot = 0

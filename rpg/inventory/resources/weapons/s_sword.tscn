@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjgramw4vbos" path="res://weapons/meshes/mglb_sword.glb" id="3_wvprq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3ksc"]
-size = Vector3(0.567383, 3.37773, 0.670166)
+size = Vector3(0.939453, 4.20302, 1.33887)
 
 [sub_resource type="Animation" id="Animation_cdb5k"]
 length = 0.001
@@ -196,7 +196,7 @@ collision_mask = 3
 monitoring = false
 
 [node name="collision" type="CollisionShape3D" parent="a_hitbox"]
-transform = Transform3D(1, 7.45058e-08, -2.6077e-07, -1.28523e-07, 1, -1.19209e-07, -3.72529e-09, 2.98023e-08, 1, -1.49012e-08, -0.40342, 0)
+transform = Transform3D(1, 7.45058e-08, -2.6077e-07, -1.30385e-07, 1, -5.96046e-08, -1.86265e-09, 0, 1, -5.96046e-08, -0.816068, -7.45058e-08)
 shape = SubResource("BoxShape3D_i3ksc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -205,4 +205,5 @@ libraries = {
 }
 autoplay = "idle"
 
+[connection signal="area_entered" from="a_hitbox" to="." method="_on_a_hitbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

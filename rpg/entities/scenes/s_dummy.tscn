@@ -24,8 +24,9 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_if0ei")
 
-[node name="health_manager" type="Node3D" parent="Area3D" node_paths=PackedStringArray("health")]
+[node name="health_manager" type="Node3D" parent="Area3D" node_paths=PackedStringArray("parent_mesh", "health")]
 script = ExtResource("1_xeo3n")
+parent_mesh = NodePath("../..")
 health = NodePath("health_float")
 
 [node name="health_float" type="Node3D" parent="Area3D/health_manager"]
