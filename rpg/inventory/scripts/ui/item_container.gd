@@ -1,6 +1,8 @@
 class_name ItemContainer
 extends Node
 
+
+@export_group("inventory")
 @export var is_player : bool
 @export var items : Array[Inventory_Item]
 @export var item_res : Array[Item]

@@ -52,8 +52,6 @@ func use_item(to_use_on : ContainerEntityArea, slot_type : GlobalEnums.equip_typ
 		slot_selected = null
 		icon.visible = false
 	else:
-		
-		to_use_on.entity.equipment_manager.equip_item(slot_selected.item_in_slot, slot_type, is_two_handed)
 		#reset values
 		slot_selected = null
 		icon.visible = false

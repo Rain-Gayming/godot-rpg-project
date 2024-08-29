@@ -1,3 +1,4 @@
+class_name EquipmentSlot
 extends Node
 
 @export_group("references")
@@ -20,3 +21,10 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	is_hovered = false 
+
+func update_slot():
+	if item.item != null:
+		item_icon.visible = true
+		item_icon.texture = item.item.item_icon
+	else:
+		item_icon.visible = false

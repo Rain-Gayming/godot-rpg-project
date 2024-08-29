@@ -1,6 +1,10 @@
 class_name InventoryUI
 extends Node
 
+@export_group("equipment slots")
+@export var left_weapon_slot : EquipmentSlot
+
+@export_group("ui")
 @export var container : ItemContainer
 @export var filter : TextEdit
 @export var menu : Control
