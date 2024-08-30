@@ -1,19 +1,30 @@
-[gd_scene load_steps=14 format=3 uid="uid://b80iqn38m04xo"]
+[gd_scene load_steps=16 format=3 uid="uid://b80iqn38m04xo"]
 
 [ext_resource type="Script" path="res://inventory/scripts/ui/player_inventory_ui.gd" id="1_a7ge5"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/container_entity_area.gd" id="2_eiijb"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/item_container.gd" id="2_il1py"]
 [ext_resource type="PackedScene" uid="uid://wq7j2mw2182l" path="res://inventory/scenes/s_equipment_slot.tscn" id="3_a78jj"]
-[ext_resource type="Resource" uid="uid://dytrryalmvju7" path="res://inventory/resources/test.tres" id="3_nd470"]
 [ext_resource type="PackedScene" uid="uid://cav3ucosg64gk" path="res://inventory/scenes/c_item_slot.tscn" id="3_qufxi"]
 [ext_resource type="Script" path="res://inventory/scripts/item types/inventory_item.gd" id="4_27euk"]
+[ext_resource type="Texture2D" uid="uid://brgnkqm3l4o67" path="res://icon.svg" id="5_tu1h6"]
+[ext_resource type="Script" path="res://inventory/scripts/item types/item_resource.gd" id="6_if4mm"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/inventory_tab.gd" id="6_l7vt0"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/container_drop_area.gd" id="6_n54hm"]
 [ext_resource type="PackedScene" uid="uid://cudettgvst8rl" path="res://inventory/scenes/s_item_drag.tscn" id="7_ojiue"]
 
+[sub_resource type="Resource" id="Resource_qt6xv"]
+script = ExtResource("6_if4mm")
+item_name = "test"
+item_icon = ExtResource("5_tu1h6")
+can_stack = false
+item_type = 0
+can_be_used = false
+is_equipable = false
+destroy_on_use = false
+
 [sub_resource type="Resource" id="Resource_vjlta"]
 script = ExtResource("4_27euk")
-item = ExtResource("3_nd470")
+item = SubResource("Resource_qt6xv")
 amount = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aogyi"]

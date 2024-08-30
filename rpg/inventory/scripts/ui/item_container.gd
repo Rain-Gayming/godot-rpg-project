@@ -1,6 +1,10 @@
 class_name ItemContainer
 extends Node
 
+@export_group("save")
+@export var save_path : String
+@export var save_items : Array[ItemSave]
+@export var save_dictionary : Dictionary
 
 @export_group("inventory")
 @export var is_player : bool
@@ -15,8 +19,18 @@ extends Node
 @export var existing_slots : Array[Control]
 
 func _ready() -> void:
-	if is_player:
+	#if the container is the player's save to the inventory
+	#otherwise save to a containers path
+	if not is_player:
+		DirAccess.make_dir_absolute("user://containers")
+		save_path = "user://containers/container_" + inventory_ui.get_parent().name
+	else:
+		DirAccess.make_dir_absolute("user://player")
+		save_path = "user://player/player_inventory"
 		SignalManager.add_item_to_player_signal.connect(add_item)
+	
+	
+	load_inventory()
 
 func add_item(item_to_add : Inventory_Item):
 	#print("adding item")
@@ -24,6 +38,8 @@ func add_item(item_to_add : Inventory_Item):
 		add_existing_item(item_to_add)
 	else:
 		add_new_item(item_to_add)
+	
+	save_container()
 	
 
 func add_new_item(item_to_add : Inventory_Item):
@@ -79,3 +95,54 @@ func remove_item(item_to_remove : Inventory_Item):
 		existing_slots.remove_at(items_location)
 		item_res.remove_at(items_location)
 		items.remove_at(items_location)
+
+
+func save_container():
+	#resets the array
+	save_dictionary.clear()
+	
+	#loops through all the players items
+	for item in items:
+		save_dictionary[item.item.item_name] = item.amount
+	
+	#send the array to a string
+	var json_string = JSON.stringify(save_dictionary, "\t")
+	
+	# open the file
+	var file_access = FileAccess.open(save_path, FileAccess.WRITE)
+	
+	#if an error happens stop
+	if not file_access:
+		print("An error happened while saving data: ", FileAccess.get_open_error())
+		return
+	#otherwise continue
+	file_access.store_line(json_string)
+	file_access.close()
+	
+	#clear again to save memory
+	save_dictionary.clear()
+
+func load_inventory():
+	save_dictionary = get_inventory_data()
+	
+	for item in ItemsList.items:
+		if save_dictionary.has(item.item_name):
+			
+			var new_item = Inventory_Item.new()
+			new_item.item = item
+			
+			print(item.item_name)
+			new_item.amount = save_dictionary[item.item_name]
+			add_item(new_item)
+	#clear again to save memory
+	save_dictionary.clear()
+
+
+func get_inventory_data():
+	var file_access = FileAccess.get_file_as_string(save_path)
+	var json_data = JSON.parse_string(file_access)
+	
+	
+	
+	if json_data is Dictionary:
+		return json_data

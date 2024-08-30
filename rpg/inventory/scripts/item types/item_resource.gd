@@ -12,6 +12,10 @@ extends Resource
 @export var is_equipable : bool
 @export var destroy_on_use : bool
 
+func _init() -> void:
+	ItemsList.items.append(self)
+	print("additem item " + item_name + " " + str(self))
+
 func use(entity : EntityManager, container : ItemContainer):
 	if can_be_used:
 		if destroy_on_use: 
