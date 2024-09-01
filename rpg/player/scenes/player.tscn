@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c18snl1mlvr8p"]
+[gd_scene load_steps=22 format=3 uid="uid://c18snl1mlvr8p"]
 
 [ext_resource type="Script" path="res://player/scripts/player_camera.gd" id="1_bpk68"]
 [ext_resource type="Script" path="res://player/scripts/player_interaction.gd" id="3_bhlby"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://entities/equipment_manager.gd" id="10_fwtpx"]
 [ext_resource type="PackedScene" uid="uid://7bvfa33fqnrr" path="res://ui/scenes/s_pause_menu.tscn" id="10_imdtu"]
 [ext_resource type="PackedScene" uid="uid://cmuv24v6gncx0" path="res://inventory/scenes/s_container.tscn" id="12_pqc2r"]
+[ext_resource type="Script" path="res://inventory/scripts/item_container.gd" id="14_yrtrn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_soc44"]
 
@@ -141,7 +142,8 @@ value = 100.0
 show_percentage = false
 script = ExtResource("8_8mjys")
 
-[node name="s_inventory" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("9_s1raf")]
+[node name="s_inventory" parent="." node_paths=PackedStringArray("item_container", "entity") instance=ExtResource("9_s1raf")]
+item_container = NodePath("../player_inventory")
 entity = NodePath("../player_scripts/entity_manager")
 
 [node name="s_container" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("12_pqc2r")]
@@ -154,5 +156,15 @@ entity = NodePath("../player_scripts/entity_manager")
 
 [node name="s_pause_menu" parent="." instance=ExtResource("10_imdtu")]
 mouse_filter = 2
+
+[node name="player_inventory" type="Node3D" parent="." node_paths=PackedStringArray("inventory_ui")]
+script = ExtResource("14_yrtrn")
+save_path = "user://player/player_inventory.json"
+save_items = null
+save_dictionary = null
+inventory_ui = NodePath("../s_inventory")
+is_player = true
+items = null
+item_res = null
 
 [connection signal="area_entered" from="neck/player_camera/interaction_area" to="neck/player_camera/interaction_area" method="_on_area_entered"]

@@ -2,6 +2,10 @@ extends Node
 
 @export var is_hovered : bool
 @export var parent_container : ItemContainer
+@export var inventory_ui : InventoryUI
+
+func _ready() -> void:
+	parent_container = inventory_ui.item_container
 
 func _process(delta: float) -> void:
 	if is_hovered:

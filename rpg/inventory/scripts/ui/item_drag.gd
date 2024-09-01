@@ -20,7 +20,7 @@ func pick_slot(item_slot : ItemSlot):
 		var container_hovered = item_slot.parent_container
 		
 		#removes the item from the container
-		slot_selected.parent_container.remove_item(slot_selected.item_in_slot)
+		slot_selected.parent_container.parent_ui.remove_item(slot_selected.item_in_slot)
 		
 		#adds it to the target container
 		container_hovered.add_item(new_item(item_slot.item_in_slot))
@@ -38,7 +38,7 @@ func swap_to_container(container : ItemContainer):
 			#removes the item from the container
 			if not slot_selected.is_equipment_slot:
 				if slot_selected.parent_container.item_res.has(slot_selected.item_in_slot.item):
-					slot_selected.parent_container.remove_item(slot_selected.item_in_slot)
+					slot_selected.parent_container.parent_ui.remove_item(slot_selected.item_in_slot)
 			else:
 				#this should only run if the slot is an equipment slot
 				#unequip item
@@ -60,7 +60,7 @@ func unequip(container : ItemContainer):
 	else:
 		print("unequipping from non container")
 		#unequip from entity
-		slot_selected.parent_container.inventory_ui.entity.equipment_manager.unequip(slot_selected.item_in_slot.item.equip_slot, slot_selected.parent_container)
+		slot_selected.parent_container.inventory_ui.entity.equipment_manager.unequip(slot_selected.item_in_slot.item.equip_slot, slot_selected.parent_container.parent_ui)
 
 func use_item(to_use_on : ContainerEntityArea, slot_type : GlobalEnums.equip_type, is_two_handed : bool):
 	if slot_selected != null:
@@ -69,7 +69,7 @@ func use_item(to_use_on : ContainerEntityArea, slot_type : GlobalEnums.equip_typ
 			print(to_use_on.entity)
 			slot_selected.item_in_slot.item.use(to_use_on.entity, to_use_on.parent_container)
 		else:
-			to_use_on.entity.equipment_manager.equip_item(slot_selected.item_in_slot, slot_type, is_two_handed, slot_selected.parent_container)
+			to_use_on.entity.equipment_manager.equip_item(slot_selected.item_in_slot, slot_type, is_two_handed, slot_selected.parent_container.parent_ui)
 		#reset values
 		slot_selected = null
 		icon.visible = false

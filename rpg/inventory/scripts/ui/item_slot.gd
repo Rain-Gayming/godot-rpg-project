@@ -3,7 +3,7 @@ extends Node
 
 @export var item_in_slot : Inventory_Item
 @export var is_hovered : bool
-@export var parent_container : ItemContainer
+@export var parent_container : UIItemContainer
 @export var is_equipment_slot : bool
 
 @export_group("ui")

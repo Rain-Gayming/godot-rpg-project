@@ -83,7 +83,7 @@ func equip_item(item_to_equip : Inventory_Item, slot : GlobalEnums.equip_type, i
 		
 		#remove the item from the inventory
 		if container == null:
-			inventory_ui.container.remove_item(item_to_equip)
+			inventory_ui.item_container.remove_item(item_to_equip)
 		else:
 			container.remove_item(item_to_equip)
 	else:

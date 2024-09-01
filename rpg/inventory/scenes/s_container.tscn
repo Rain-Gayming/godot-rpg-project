@@ -1,11 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmuv24v6gncx0"]
+[gd_scene load_steps=10 format=3 uid="uid://cmuv24v6gncx0"]
 
 [ext_resource type="Script" path="res://inventory/scripts/ui/inventory_ui.gd" id="1_ebcuc"]
-[ext_resource type="Script" path="res://inventory/scripts/ui/item_container.gd" id="2_ayjcs"]
-[ext_resource type="Script" path="res://inventory/scripts/item types/inventory_item.gd" id="4_8lo4r"]
-[ext_resource type="Texture2D" uid="uid://brgnkqm3l4o67" path="res://icon.svg" id="5_0sb26"]
+[ext_resource type="Script" path="res://inventory/scripts/ui/ui_item_container.gd" id="2_ayjcs"]
 [ext_resource type="PackedScene" uid="uid://cav3ucosg64gk" path="res://inventory/scenes/c_item_slot.tscn" id="5_8hoxi"]
-[ext_resource type="Script" path="res://inventory/scripts/item types/item_resource.gd" id="6_25uj8"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/inventory_tab.gd" id="6_euess"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/container_entity_area.gd" id="7_op1ol"]
 [ext_resource type="PackedScene" uid="uid://cudettgvst8rl" path="res://inventory/scenes/s_item_drag.tscn" id="7_usq13"]
@@ -14,21 +11,6 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aogyi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdghs"]
-
-[sub_resource type="Resource" id="Resource_qt6xv"]
-script = ExtResource("6_25uj8")
-item_name = "test"
-item_icon = ExtResource("5_0sb26")
-can_stack = false
-item_type = 0
-can_be_used = false
-is_equipable = false
-destroy_on_use = false
-
-[sub_resource type="Resource" id="Resource_vjlta"]
-script = ExtResource("4_8lo4r")
-item = SubResource("Resource_qt6xv")
-amount = 1
 
 [node name="s_container" type="Control" node_paths=PackedStringArray("container", "filter", "menu", "entity_area")]
 layout_mode = 3
@@ -186,12 +168,11 @@ offset_top = 92.0
 offset_right = 626.0
 offset_bottom = 274.0
 script = ExtResource("2_ayjcs")
-debug_item = SubResource("Resource_vjlta")
 item_location = NodePath("GridContainer")
 item_slot = ExtResource("5_8hoxi")
 inventory_ui = NodePath("../..")
 
-[node name="container_entity" type="Control" parent="cr_background/p_items" node_paths=PackedStringArray("parent_container")]
+[node name="container_entity" type="Control" parent="cr_background/p_items" node_paths=PackedStringArray("parent_container", "inventory_ui")]
 anchors_preset = 0
 offset_left = -4.0
 offset_top = -4.0
@@ -199,6 +180,7 @@ offset_right = 471.0
 offset_bottom = 185.0
 script = ExtResource("8_a0rat")
 parent_container = NodePath("..")
+inventory_ui = NodePath("../../..")
 
 [node name="GridContainer" type="GridContainer" parent="cr_background/p_items"]
 layout_mode = 0

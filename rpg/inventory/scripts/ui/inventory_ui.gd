@@ -5,7 +5,8 @@ extends Node
 @export var left_weapon_slot : EquipmentSlot
 
 @export_group("ui")
-@export var container : ItemContainer
+@export var item_container : ItemContainer
+@export var container : UIItemContainer
 @export var filter : TextEdit
 @export var menu : Control
 @export var is_container : bool
