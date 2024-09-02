@@ -7,9 +7,35 @@ extends Node
 @export var inventory_ui : InventoryUI 
 @export var parent_ui : ItemContainer
 @export var existing_slots : Array[Control]
+var saved_items : Array[Inventory_Item]
 
 func _ready() -> void:
 	parent_ui = inventory_ui.item_container
+	SignalManager.open_container_signal.connect(open_container)
+
+func open_container(container : ItemContainer):
+	open_container_ui(container)
+
+func unload_container():
+
+	for slot in existing_slots:
+		slot.queue_free()
+		existing_slots.remove_at(existing_slots.find(slot))
+
+func open_container_ui(container : ItemContainer):
+	unload_container()
+	update_container_ui(container.items, container)
+
+
+func update_container_ui(items : Array[Inventory_Item], container : ItemContainer):
+	print("this is called")
+	saved_items.clear()
+	saved_items = items
+	
+	for item in saved_items:
+		container.items.remove_at(container.items.find(item))
+		container.add_new_item(item)
+	
 
 func add_new_item(new_item : Inventory_Item):
 	#spawn the new slot
@@ -17,7 +43,7 @@ func add_new_item(new_item : Inventory_Item):
 	#attach it to the grid
 	item_location.add_child(new_slot)
 	#set its item
-	new_slot.item_in_slot = new_item
+	new_slot.item_in_slot = new_item  
 	#set the parent container
 	new_slot.parent_container = self
 	#update its display

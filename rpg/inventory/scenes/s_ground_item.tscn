@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmuf0mm0gu1dq"]
 
-[ext_resource type="Script" path="res://inventory/scripts/ground_item.gd" id="1_wy1s3"]
-[ext_resource type="Script" path="res://inventory/scripts/ground_item_ref.gd" id="2_e8vgd"]
+[ext_resource type="Script" path="res://inventory/scripts/ground_items/ground_item.gd" id="1_e3e7y"]
+[ext_resource type="Script" path="res://inventory/scripts/ground_items/ground_item_ref.gd" id="2_bvswe"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3o561"]
 
@@ -11,7 +11,7 @@ height = 1.76972
 
 [node name="ground_item" type="Node3D" groups=["item"]]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
-script = ExtResource("1_wy1s3")
+script = ExtResource("1_e3e7y")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 layers = 3
@@ -20,7 +20,7 @@ mesh = SubResource("CapsuleMesh_3o561")
 
 [node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("ground_item") groups=["item"]]
 collision_mask = 3
-script = ExtResource("2_e8vgd")
+script = ExtResource("2_bvswe")
 ground_item = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["item"]]

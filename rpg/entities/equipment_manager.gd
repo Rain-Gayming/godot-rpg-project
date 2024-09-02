@@ -45,7 +45,7 @@ func equip_item(item_to_equip : Inventory_Item, slot : GlobalEnums.equip_type, i
 					if left_hand_equip != null:
 						left_hand_equip.queue_free()
 						#remove the item from the inventory
-						inventory_ui.container.add_item(left_weapon)
+						inventory_ui.item_container.add_item(left_weapon)
 					
 					#spawn the weapon
 					var weapon_scene = load(left_weapon.item.weapon_scene)

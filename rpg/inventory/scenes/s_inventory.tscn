@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://b80iqn38m04xo"]
 
 [ext_resource type="Script" path="res://inventory/scripts/ui/player_inventory_ui.gd" id="1_a7ge5"]
-[ext_resource type="Script" path="res://inventory/scripts/ui/container_entity_area.gd" id="2_eiijb"]
-[ext_resource type="Script" path="res://inventory/scripts/ui/ui_item_container.gd" id="2_il1py"]
+[ext_resource type="Script" path="res://inventory/scripts/containers/container_entity_area.gd" id="2_eiijb"]
+[ext_resource type="Script" path="res://inventory/scripts/containers/ui_item_container.gd" id="2_il1py"]
 [ext_resource type="PackedScene" uid="uid://wq7j2mw2182l" path="res://inventory/scenes/s_equipment_slot.tscn" id="3_a78jj"]
 [ext_resource type="PackedScene" uid="uid://cav3ucosg64gk" path="res://inventory/scenes/c_item_slot.tscn" id="3_qufxi"]
 [ext_resource type="Script" path="res://inventory/scripts/ui/inventory_tab.gd" id="6_l7vt0"]
-[ext_resource type="Script" path="res://inventory/scripts/ui/container_drop_area.gd" id="6_n54hm"]
+[ext_resource type="Script" path="res://inventory/scripts/containers/container_drop_area.gd" id="6_n54hm"]
 [ext_resource type="PackedScene" uid="uid://cudettgvst8rl" path="res://inventory/scenes/s_item_drag.tscn" id="7_ojiue"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aogyi"]

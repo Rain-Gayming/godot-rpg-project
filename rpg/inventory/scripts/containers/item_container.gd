@@ -7,7 +7,7 @@ extends Node
 @export var save_dictionary : Dictionary
 
 @export_group("inventory")
-@export var container : UIItemContainer
+@export var container_ui : UIItemContainer
 @export var inventory_ui : InventoryUI
 @export var is_player : bool
 @export var items : Array[Inventory_Item]
@@ -16,8 +16,9 @@ extends Node
 
 
 func _ready() -> void:
-	container = inventory_ui.container
-	inventory_ui.item_container = self
+	inventory_ui = SContainer
+	container_ui = inventory_ui.container
+		
 	#if the container is the player's save to the inventory
 	#otherwise save to a containers path
 	if not is_player:
@@ -28,8 +29,12 @@ func _ready() -> void:
 		save_path = "user://player/player_inventory"
 		SignalManager.add_item_to_player_signal.connect(add_item)
 	
-	
-	load_inventory()
+	SignalManager.open_container_signal.connect(open_container)
+
+func open_container(_container : ItemContainer):
+
+	inventory_ui.toggle_inventory_value(true)
+	container_ui.open_container(_container)
 
 func add_item(item_to_add : Inventory_Item):
 	#print("adding item")
@@ -52,7 +57,7 @@ func add_new_item(item_to_add : Inventory_Item):
 	new_item.amount = new_amount
 	new_item.item = new_item_ref
 	
-	container.add_new_item(new_item)
+	container_ui.add_new_item(new_item)
 	
 	#add the items to their lists
 	items.append(new_item)
@@ -66,7 +71,7 @@ func add_existing_item(item_to_add : Inventory_Item):
 	
 	var new_amount =  item_to_add.amount
 
-	items[items_location] = container.add_existing_item(new_amount, items_location, items[items_location])
+	items[items_location] = container_ui.add_existing_item(new_amount, items_location, items[items_location])
 
 func remove_item(item_to_remove : Inventory_Item):
 	var items_location = items.find(item_to_remove)
@@ -74,7 +79,7 @@ func remove_item(item_to_remove : Inventory_Item):
 	#print("removing item " + item_to_remove.item.item_name + " at " + str(item_location) + " of amount " + str(item_to_remove.amount) + " on container " + str(self))
 	
 	items[items_location].amount -= item_to_remove.amount
-	container.remove_item(item_to_remove.amount, items_location, items[items_location])
+	container_ui.remove_item(item_to_remove.amount, items_location, items[items_location])
 	if items[items_location].amount > 0:
 		pass
 	else:
