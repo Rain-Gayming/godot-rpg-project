@@ -4,7 +4,6 @@ extends Node
 @export_group("references")
 @export var current_weapon : WeaponManager
 
- 
 @export_group("pausing")
 @export var is_paused : bool
 @export var game_stopped : bool
