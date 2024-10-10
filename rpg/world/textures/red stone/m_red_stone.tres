@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cwmphrqibijsa"]
-
-[ext_resource type="Texture2D" uid="uid://bqof66ubedc6u" path="res://world/textures/red stone/t_red_stone_4.png" id="1_p4jc6"]
-
-[resource]
-albedo_texture = ExtResource("1_p4jc6")
-uv1_scale = Vector3(11.14, 11.14, 11.14)
-uv1_offset = Vector3(37.5, 0, 0)
-uv1_triplanar_sharpness = 21.8567

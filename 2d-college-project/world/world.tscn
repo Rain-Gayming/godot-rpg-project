@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://btwjkp4qowkxd"]
+
+[ext_resource type="Texture2D" uid="uid://b2mrt4h3s1v1k" path="res://icon.svg" id="1_2duf6"]
+[ext_resource type="Texture2D" uid="uid://cfergnn3bhypf" path="res://player/sprites/test_player.png" id="2_5f6it"]
+[ext_resource type="Script" path="res://player/scripts/player_movement.gd" id="3_p3rkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mgo0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbnlw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ground" type="Node2D" parent="."]
+scale = Vector2(9.96, 1)
+
+[node name="staticbody" type="StaticBody2D" parent="ground"]
+
+[node name="collision" type="CollisionShape2D" parent="ground/staticbody"]
+shape = SubResource("RectangleShape2D_6mgo0")
+
+[node name="sprite" type="Sprite2D" parent="ground"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_2duf6")
+
+[node name="ground2" type="Node2D" parent="."]
+position = Vector2(154, -39)
+scale = Vector2(9.96, 1)
+
+[node name="staticbody" type="StaticBody2D" parent="ground2"]
+
+[node name="collision" type="CollisionShape2D" parent="ground2/staticbody"]
+shape = SubResource("RectangleShape2D_6mgo0")
+
+[node name="sprite" type="Sprite2D" parent="ground2"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_2duf6")
+
+[node name="ground3" type="Node2D" parent="."]
+position = Vector2(-157, -47)
+scale = Vector2(9.96, 1)
+
+[node name="staticbody" type="StaticBody2D" parent="ground3"]
+
+[node name="collision" type="CollisionShape2D" parent="ground3/staticbody"]
+shape = SubResource("RectangleShape2D_6mgo0")
+
+[node name="sprite" type="Sprite2D" parent="ground3"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_2duf6")
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(0, -57)
+
+[node name="collider" type="CollisionShape2D" parent="player"]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_bbnlw")
+
+[node name="sprite" type="Sprite2D" parent="player"]
+position = Vector2(0, 10)
+texture = ExtResource("2_5f6it")
+
+[node name="scripts" type="Node2D" parent="player"]
+position = Vector2(0, 25)
+scale = Vector2(9.96, 1)
+
+[node name="player_movement" type="Node2D" parent="player/scripts" node_paths=PackedStringArray("character_body")]
+script = ExtResource("3_p3rkc")
+character_body = NodePath("../..")
+speed = 150.0
+speed_mult = 1.0
+jump_height = 500.0
+jump_multiplier = 1.0
+
+[node name="camera" type="Camera2D" parent="player"]
