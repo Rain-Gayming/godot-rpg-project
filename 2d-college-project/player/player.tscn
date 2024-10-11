@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://38gm7c4pkys0"]
+
+[ext_resource type="Texture2D" uid="uid://cfergnn3bhypf" path="res://player/sprites/test_player.png" id="1_8a1yq"]
+[ext_resource type="Script" path="res://player/scripts/player_movement.gd" id="2_4kxtn"]
+[ext_resource type="Script" path="res://player/scripts/ability_manager.gd" id="3_ou0bg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbnlw"]
+radius = 7.0
+height = 28.0
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(0, -57)
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_bbnlw")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+texture = ExtResource("1_8a1yq")
+
+[node name="scripts" type="Node2D" parent="."]
+position = Vector2(0, 25)
+scale = Vector2(9.96, 1)
+
+[node name="player_movement" type="Node2D" parent="scripts" node_paths=PackedStringArray("character_body", "ability_manager")]
+script = ExtResource("2_4kxtn")
+character_body = NodePath("../..")
+ability_manager = NodePath("../ability_manager")
+speed = 150.0
+speed_mult = 1.0
+dash_speed = 1500.0
+dash_regen_time = 5.0
+jump_height = 300.0
+jump_multiplier = 1.0
+grounded_time = 0.3
+can_jump = true
+
+[node name="ability_manager" type="Node2D" parent="scripts"]
+script = ExtResource("3_ou0bg")
+has_dash = true
+total_dashes = 3
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(2.055, 2.055)

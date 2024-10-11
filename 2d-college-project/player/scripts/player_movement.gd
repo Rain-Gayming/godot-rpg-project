@@ -2,10 +2,17 @@ extends Node
 
 @export_group("references")
 @export var character_body: CharacterBody2D
+@export var ability_manager: AbilityManager
 
 @export_group("speed")
 @export var speed: float
 @export var speed_mult: float
+
+@export_group("dash")
+@export var dash_speed: float
+@export var times_dashed: int
+@export var dash_regen_time: float
+@export var dash_regen_timer: float
 
 
 @export_group("jumping")
@@ -23,15 +30,29 @@ func _ready():
 
 func _physics_process(delta: float):
 	character_body.move_and_slide()
-	get_input()
+	get_input(delta)
 	jump(delta)	
 
 
-func get_input():
+func get_input(delta: float):
 	var horizontal = Input.get_axis("move_left", "move_right");
 	character_body.velocity.x = horizontal * speed
 
+	if Input.is_action_just_pressed("ability_dash"):
+		dash(horizontal)
+	else:
+		if times_dashed < 5 and times_dashed > 1:
+			dash_regen_timer += delta
+			if dash_regen_timer >= dash_regen_time:
+				times_dashed -= 1
+				dash_regen_timer = 0
 
+
+
+func dash(horizontal: float):
+	if ability_manager.has_dash and times_dashed < ability_manager.total_dashes:
+		character_body.velocity.x = horizontal * dash_speed
+		times_dashed += 1
 
 func jump(delta: float) -> void:	
 	
@@ -49,13 +70,17 @@ func jump(delta: float) -> void:
 	#if so it allows them to still jump
 	if grounded_timer < grounded_time and not is_jumping and !character_body.is_on_floor():
 		can_jump = true
-		print("can jump due to koyote time")
 	elif grounded_timer > grounded_time or is_jumping:
 		can_jump = false
 
 	#jumping
-	if Input.is_action_just_pressed("move_jump") and can_jump:
+	if Input.is_action_just_pressed("move_jump") and (can_jump or can_double_jump):
 		character_body.velocity.y = -jump_height * jump_multiplier	
 		is_jumping = true
 		can_jump = false
-		print(character_body.velocity.y)
+		
+		if ability_manager.has_double_jump:
+			if can_double_jump:
+				can_double_jump = false
+			else: 
+				can_double_jump = true
