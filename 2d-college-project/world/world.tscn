@@ -70,5 +70,7 @@ speed = 150.0
 speed_mult = 1.0
 jump_height = 500.0
 jump_multiplier = 1.0
+grounded_time = 0.3
+can_jump = true
 
 [node name="camera" type="Camera2D" parent="player"]
