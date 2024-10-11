@@ -3,6 +3,7 @@ extends Node
 @export_group("references")
 @export var character_body: CharacterBody2D
 @export var ability_manager: AbilityManager
+@export var to_flip: Node2D
 
 @export_group("speed")
 @export var speed: float
@@ -28,7 +29,7 @@ extends Node
 func _ready():
 	character_body = get_parent().get_parent()
 
-func _physics_process(delta: float):
+func _process(delta):
 	character_body.move_and_slide()
 	get_input(delta)
 	jump(delta)	
@@ -38,8 +39,15 @@ func get_input(delta: float):
 	var horizontal = Input.get_axis("move_left", "move_right");
 	character_body.velocity.x = horizontal * speed
 
+	#flips the player
+	if horizontal > 0:
+		to_flip.transform.scaled(Vector2(-1, 1))
+	else:
+		to_flip.transform.scaled(Vector2(-1, 1))
+		pass
+	#dash the player
 	if Input.is_action_just_pressed("ability_dash"):
-		dash(horizontal)
+		dash(horizontal, delta)
 	else:
 		if times_dashed < 5 and times_dashed > 1:
 			dash_regen_timer += delta
@@ -49,9 +57,9 @@ func get_input(delta: float):
 
 
 
-func dash(horizontal: float):
+func dash(horizontal: float, delta : float):
 	if ability_manager.has_dash and times_dashed < ability_manager.total_dashes:
-		character_body.velocity.x = horizontal * dash_speed
+		character_body.velocity.x = horizontal * dash_speed * delta
 		times_dashed += 1
 
 func jump(delta: float) -> void:	
@@ -75,7 +83,7 @@ func jump(delta: float) -> void:
 
 	#jumping
 	if Input.is_action_just_pressed("move_jump") and (can_jump or can_double_jump):
-		character_body.velocity.y = -jump_height * jump_multiplier	
+		character_body.velocity.y = -jump_height * jump_multiplier
 		is_jumping = true
 		can_jump = false
 		

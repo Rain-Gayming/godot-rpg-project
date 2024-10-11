@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://btwjkp4qowkxd"]
+[gd_scene load_steps=11 format=3 uid="uid://btwjkp4qowkxd"]
 
 [ext_resource type="Texture2D" uid="uid://b2mrt4h3s1v1k" path="res://icon.svg" id="1_2duf6"]
 [ext_resource type="PackedScene" uid="uid://38gm7c4pkys0" path="res://player/player.tscn" id="2_72sgc"]
 [ext_resource type="Texture2D" uid="uid://d4ng82q4jmknw" path="res://enemies/lobotomy_patient.png" id="3_pgcfl"]
 [ext_resource type="Script" path="res://enemies/scripts/edge_check.gd" id="4_0xeg1"]
 [ext_resource type="Script" path="res://enemies/scripts/ground_edge_move.gd" id="4_yp0eu"]
+[ext_resource type="Script" path="res://health/scripts/health_manager.gd" id="6_fg05d"]
+[ext_resource type="Script" path="res://health/scripts/hitbox.gd" id="6_wrpku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mgo0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00q4u"]
 radius = 6.0
 height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bk2n"]
+size = Vector2(16, 28)
 
 [node name="Node2D" type="Node2D"]
 
@@ -106,10 +111,10 @@ shape = SubResource("RectangleShape2D_6mgo0")
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_2duf6")
 
-[node name="player" parent="." instance=ExtResource("2_72sgc")]
-
 [node name="ground_enemy" type="CharacterBody2D" parent="."]
 position = Vector2(-154, -71)
+collision_layer = 2
+collision_mask = 2
 
 [node name="sprite" type="Sprite2D" parent="ground_enemy"]
 texture = ExtResource("3_pgcfl")
@@ -127,9 +132,25 @@ script = ExtResource("4_0xeg1")
 ground_ray = NodePath("../../ground_ray")
 check_time = 0.5
 
+[node name="health_manager" type="Node2D" parent="ground_enemy/scripts"]
+script = ExtResource("6_fg05d")
+max_health = 6.0
+
 [node name="collision" type="CollisionShape2D" parent="ground_enemy"]
 shape = SubResource("CapsuleShape2D_00q4u")
 
 [node name="ground_ray" type="RayCast2D" parent="ground_enemy"]
 position = Vector2(14, 5)
 target_position = Vector2(0, 14)
+
+[node name="Area2D" type="Area2D" parent="ground_enemy" node_paths=PackedStringArray("health_manager")]
+script = ExtResource("6_wrpku")
+health_manager = NodePath("../scripts/health_manager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground_enemy/Area2D"]
+shape = SubResource("RectangleShape2D_0bk2n")
+
+[node name="player" parent="." instance=ExtResource("2_72sgc")]
+position = Vector2(-1, -73)
+
+[connection signal="area_entered" from="ground_enemy/Area2D" to="ground_enemy/Area2D" method="hit"]

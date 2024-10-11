@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://f5d81b4qgsdo"]
+
+[ext_resource type="Script" path="res://combat/scripts/projectile.gd" id="1_lqr4x"]
+[ext_resource type="Texture2D" uid="uid://b2mrt4h3s1v1k" path="res://icon.svg" id="2_7do88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcstt"]
+size = Vector2(20, 2)
+
+[node name="arrow" type="Node2D"]
+position = Vector2(-81, -71)
+script = ExtResource("1_lqr4x")
+damage = 6.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.01)
+texture = ExtResource("2_7do88")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="collider" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_bcstt")
+
+[connection signal="area_entered" from="hitbox" to="." method="hit"]

@@ -17,7 +17,7 @@ func _process(delta):
 			is_near_edge = true
 	else:
 		check_timer -= delta
-		
+				
 func start_timer():
 	if check_timer <= 0:
 		check_timer = check_time
